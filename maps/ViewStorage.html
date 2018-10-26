@@ -1,0 +1,41 @@
+<html>
+<head>
+
+<body>
+<script>
+function tableCreate(){
+    var body = document.getElementsByTagName("body")[0];
+if( localStorage.length == 0 ){
+    h1 = document.createElement('h1');
+    h1.innerHTML = "No Local Storage";
+    body.appendChild(h1);
+}else{
+    var table = document.createElement("table");
+    table.setAttribute('border', '1');
+    var tbody = document.createElement("tbody");
+    var tr = document.createElement('tr');
+    var th0 = document.createElement('th');
+    var th1 = document.createElement('th');
+    th0.innerHTML = "Key";
+    th1.innerHTML = "Value";
+    tr.appendChild(th0);
+    tr.appendChild(th1);
+    tbody.appendChild(tr);
+    for (var i = 0; i < localStorage.length; i++){
+        var row = document.createElement('tr');
+        var cell0 = document.createElement('td');
+        var cell1 = document.createElement('td');
+        cell0.innerHTML = localStorage.key(i);
+        cell1.innerHTML = localStorage.getItem(localStorage.key(i));
+        row.appendChild(cell0);
+        row.appendChild(cell1);
+        tbody.appendChild(row);
+    }
+    table.appendChild(tbody);
+    body.appendChild(table);
+}
+}
+tableCreate();
+</script>
+</body>
+</html>
