@@ -1,0 +1,19 @@
+<html>
+<head>
+<script src="../js/Tile.js" ></script>
+<script>
+function test(){
+let tile = new Tile("Water", 0,0, 0, "Item");
+var debug = document.getElementById("debug");
+console.log(tile);
+debug.innerHTML = JSON.stringify( tile );
+}
+</script>
+</head>
+<body>
+<div id='debug'> </div>
+<script>
+test();
+</script>
+</body>
+</html>
