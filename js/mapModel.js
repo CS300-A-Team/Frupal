@@ -24,7 +24,8 @@ class mapModel{
 
 
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
-    //Based upon the idea that 0,0 is the bottom left corner of the map
+    //Based upon the idea that 1,1 is the bottom left corner of the map
+    //possibly change to mapsize -1
     getDirection(Dir, X, Y){
         if(Dir == "N"){
             var norY = Y + 1;
