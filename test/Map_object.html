@@ -1,0 +1,63 @@
+<html>
+<head>
+<script src="../js/Tile.js" ></script>
+<script src="../js/mapModel.js"></script>
+<script>
+function test(){
+let tile = new Tile("Water", 0,0, 0, "Item");
+var debug = document.getElementById("debug");
+console.log(tile);
+debug.innerHTML = JSON.stringify( tile );
+}
+function getTileTest(){
+    let map = new mapModel(5);
+    map.addTile("Meadow", 2, 1, 0, "Food");
+    let gotTile = map.getTile(2,1);
+    var debug = document.getElementById("debug2");
+    console.log(gotTile);
+    debug.innerHTML = JSON.stringify( gotTile );
+
+}
+function dirNTest(){
+    let map = new mapModel(5);
+    map.addTile("Water", 3,3, 0,"Weapon");
+    let dirTile = map.getDirection("N",3,2);
+    var debug = document.getElementById("debug3");
+    console.log(dirTile);
+    debug.innerHTML = JSON.stringify(dirTile);
+}
+function dirNLoop(){
+    let map = new mapModel(5);
+    map.addTile("Trees", 0,0, 0,"Drill");
+    let dirTile = map.getDirection("N",0,5);
+    var debug = document.getElementById("debug4");
+    console.log(dirTile);
+    debug.innerHTML = JSON.stringify(dirTile);
+}
+
+function setMapSize(){
+    let map = new mapModel(5);
+    map.mapSize = 10;
+    let newSize = map.mapSize;
+    var debug = document.getElementById("debug5");
+    console.log(newSize);
+    debug.innerHTML = JSON.stringify(newSize);
+
+}
+</script>
+</head>
+<body>
+<div id='debug'> </div>
+<div id='debug2'></div>
+<div id='debug3'></div>
+<div id="debug4"></div>
+<div id="debug5"></div>
+<script>
+    test();
+    getTileTest();
+    dirNTest();
+    dirNLoop();
+    setMapSize();
+</script>
+</body>
+</html>
