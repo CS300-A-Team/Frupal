@@ -1,0 +1,20 @@
+<html>
+<head>
+<script src="../js/CharModel.js"></script>
+<script>
+function test(){
+let charModel = new CharModel( 12, 12, 10, 10000 );
+var debug = document.getElementById("debug1");
+debug.innerHTML = JSON.stringify( charModel );
+charModel.move( 11, 12, 2 );
+debug = document.getElementById("debug2");
+debug.innerHTML = JSON.stringify( charModel );
+}
+</script>
+</head>
+<div id="debug1"> </div>
+<div id="debug2"> </div>
+<script>
+test();
+</script>
+</html>
