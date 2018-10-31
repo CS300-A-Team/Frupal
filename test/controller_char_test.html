@@ -1,0 +1,30 @@
+<html>
+<head>
+<script src="../js/CharModel.js"></script>
+<script src="../js/Controller.js"></script>
+<script>
+function test(){
+let controller = new Controller( new CharModel( 12,12, 2, 1000 ) );
+var debug = document.getElementById("debug1");
+debug.innerHTML = JSON.stringify( controller );
+
+controller.moveNorth();
+debug = document.getElementById("debug2");
+debug.innerHTML = JSON.stringify( controller );
+
+controller.moveSouth();
+debug = document.getElementById("debug3");
+debug.innerHTML = JSON.stringify( controller );
+
+}
+</script>
+</head>
+<div id="debug"> </div>
+<div id="debug1"> </div>
+<div id="debug2"> </div>
+<div id="debug3"> </div>
+<div id="debug4"> </div>
+<script>
+test();
+</script>
+</html>

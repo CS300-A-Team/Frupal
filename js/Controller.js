@@ -1,32 +1,32 @@
 class Controller{
     
-    constructor( mapview, mapmodel, charmodel ){
+    constructor( charmodel /* mapmodel, mapview */ ){
         // Set the pieces it controls
-        this.mapmodel = mapmodel;
+        //this.mapmodel = mapmodel;
         this.charmodel = charmodel;
     }
 
     // Slot for moving in Cardinal Directions
     moveNorth(){
-        move ( 'N' );
+        this.move ( 'N' );
     }
     moveSouth(){
-        move ( 'S' );
+       this.move ( 'S' );
     }
     moveEast(){
-        move ('E');
+        this.move ('E');
     }
     moveWest(){
-        move ('E');
+        this.move ('E');
     }
 
     // Actual Move call logic
     // Game logic goes here
     move( Dir ){
         // Get current location
-        var x = charmodel.x;
-        var y = charmodel.y;
-        var tile = mapmodel.nextDirection( Dir, x, y );
+        var x = this.charmodel.x;
+        var y = this.charmodel.y;
+        //var tile = mapmodel.nextDirection( Dir, x, y );
 
         // Check the tile
         // If cannot move into tile then penalize
@@ -36,14 +36,15 @@ class Controller{
 
         // If Diamond, then win the game
 
-        charmodel.move( newtile.x, newtile.y, 1 );
+        //charmodel.move( newtile.x, newtile.y, 1 );
+        this.charmodel.move( x+1, y, 1 );
 
         // Check if character is now dead from moving
-        if(charmodel.isDead()){
+        if(this.charmodel.isDead()){
             alert("Oh no! You died!!");
         }
 
-        drawGame();
+        this.drawGame();
     }
 
 
