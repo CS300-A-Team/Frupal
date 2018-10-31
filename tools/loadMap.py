@@ -72,6 +72,7 @@ def main():
     func = statefunc.get( state )
 
     print( "<script>") 
+    print( "localStorage.clear();" ) 
     for mapLine in mapFile:
         line = mapLine.rstrip()
         if line == "######################":
