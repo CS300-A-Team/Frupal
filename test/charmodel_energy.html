@@ -4,16 +4,26 @@
 <script>
 function test(){
 let charModel = new CharModel( 12, 12, 10, 10000 );
-var debug = document.getElementById("debug1");
+var debug = document.getElementById("debug0");
+debug.innerHTML = charModel.isDead();
+debug = document.getElementById("debug1");
 debug.innerHTML = JSON.stringify( charModel );
 charModel.move( 11, 12, 2 );
 debug = document.getElementById("debug2");
 debug.innerHTML = JSON.stringify( charModel );
+charModel.move( 11, 12, 12 );
+debug = document.getElementById("debug3");
+debug.innerHTML = JSON.stringify( charModel );
+debug = document.getElementById("debug4");
+debug.innerHTML = charModel.isDead();
 }
 </script>
 </head>
+<div id="debug0"> </div>
 <div id="debug1"> </div>
 <div id="debug2"> </div>
+<div id="debug3"> </div>
+<div id="debug4"> </div>
 <script>
 test();
 </script>
