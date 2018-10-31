@@ -7,7 +7,19 @@ class mapModel{
     }
 
     addTile(Ter, X, Y, Visit, Item){
-        this.mapHash[X+','+Y] = new Tile(Ter, X, Y, Visit, Item);
+        if(this.mapHash.getTile(X, Y) == undefined) {
+            this.mapHash[X + ',' + Y] = new Tile(Ter, X, Y, Visit, Item);
+        }else{
+            this.mapHash.modTile(Ter, X, Y, Visit, Item);
+        }
+    }
+
+    modTile(Ter, X, Y, Visit, Item){
+        this.mapHash[X+','+Y].xLoc = X;
+        this.mapHash[X+','+Y].yLoc = Y;
+        this.mapHash[X+','+Y].Terrain = Ter;
+        this.mapHash[X+','+Y].Visited = Visit;
+        this.mapHash[X+','+Y].Item = Item;
     }
 
     getTile(X, Y){
