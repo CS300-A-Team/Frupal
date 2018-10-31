@@ -1,0 +1,46 @@
+<html>
+<title> A-Team Frupal </title>
+<head>
+<script>
+
+function north(){
+  window.alert("You went north!");
+}
+
+function south(){
+  window.alert("You went south!");
+}
+
+function east(){
+  window.alert("You went east!");
+}
+
+function west(){
+  window.alert("You went west!");
+}
+</script>
+</head>
+
+<head>
+<link rel ="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1> FRUPAL - the game... </h1>
+    <p>
+    <form name="buttons" class="flex">
+      <div class="form-row">
+         <input type="button" value="NORTH" onClick="north()">
+      </div>
+      <div class="form-row">
+        <input type="button" value="WEST" onClick="west()">
+        <input type="button" value="EAST" onClick="east()">
+      </div>
+      <div class="form-row">
+        <input type="button" value="SOUTH" onClick="south()">
+      </div>
+    </form>
+  </div>
+<script type="text/javascript" src='scripts.js'></script>
+</body>
+</html>
