@@ -1,22 +1,26 @@
 <html>
 <title> A-Team Frupal </title>
 <head>
+<script src="js/CharModel.js"></script>
+<script src="js/Controller.js"></script>
 <script>
 
+let controller = new Controller( new CharModel( 12, 12, 2, 1000) );
+
 function north(){
-  window.alert("You went north!");
+  controller.moveNorth();
 }
 
 function south(){
-  window.alert("You went south!");
+  controller.moveSouth();
 }
 
 function east(){
-  window.alert("You went east!");
+  controller.moveEast();
 }
 
 function west(){
-  window.alert("You went west!");
+  controller.moveWest();
 }
 </script>
 </head>
@@ -41,6 +45,6 @@ function west(){
       </div>
     </form>
   </div>
-<script type="text/javascript" src='scripts.js'></script>
+<!-- <script type="text/javascript" src='scripts.js'></script> -->
 </body>
 </html>
