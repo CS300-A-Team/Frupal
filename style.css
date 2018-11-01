@@ -1,0 +1,93 @@
+
+* {
+    box-sizing: border-box;
+}
+
+.controls {
+    float: left;
+    background-color: #e5e5e5;
+    padding: 8px;
+    margin-top: 7px;
+    margin-outside: 8px;
+    display: block;
+    width: 50%;
+    color: black;
+}
+
+.messages {
+    float: left;
+    background-color: #e5e5e5;
+    padding: 0 8px;
+    margin-top: 7px;
+    margin-outside: 8px;
+    display: block;
+    width: 50%;
+    color: black;
+}
+
+.menu a {
+    background-color: #e5e5e5;
+    padding: 8px;
+    margin-top: 7px;
+    display: block;
+    width: 100%;
+    color: black;
+}
+
+.map {
+    float: left;
+    width: 80%;
+    padding: 0 20px;
+}
+
+.status {
+    background-color: #e5e5e5;
+    float: right;
+    width: 20%;
+    padding: 15px;
+    margin-top: 7px;
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 600px;
+    height: 600px;
+    table-layout: fixed;
+
+}
+
+#mapView {
+    padding: 0px;
+    margin: 0 auto;
+    border: 2px solid #181818;
+}
+
+#mapView tr td {
+    width: 24px;
+    height: 24px;
+}
+
+#mapView tr:nth-child(2n) td:nth-child(2n+1) {
+    background: #9f9f9f;
+}
+
+#mapView tr:nth-child(2n+1) td:nth-child(2n) {
+    background: #9f9f9f;
+}
+
+@media only screen and (max-width: 800px) {
+    /* For mobile phones: */
+    .controls, .messages {
+        width: 100%;
+    }
+    .status {
+        width: 100%;
+        float:right;
+    }
+    .map {
+        width: 100%;
+        float: left;
+    }
+}
