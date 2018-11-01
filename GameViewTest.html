@@ -7,98 +7,136 @@
         * {
             box-sizing: border-box;
         }
-        .menu {
-            float:left;
-            width:20%;
-            text-align:center;
+        .controls {
+            float: left;
+            background-color: #e5e5e5;
+            padding: 8px;
+            margin-top: 7px;
+            margin-outside: 8px;
+            display: block;
+            width: 50%;
+            color: black;
         }
 
-        .contols {
-            float:left;
-            background-color:#e5e5e5;
+        .messages {
+            float: left;
+            background-color: #e5e5e5;
+            padding: 0 8px;
+            margin-top: 7px;
+            margin-outside: 8px;
+            display: block;
+            width: 50%;
+            color: black;
+        }
+
+        .menu a {
+            background-color: #e5e5e5;
             padding: 8px;
-            margin-top:7px;
-            display:block;
-            width:50%;
-            color:black;
+            margin-top: 7px;
+            display: block;
+            width: 100%;
+            color: black;
+        }
+
+        .map {
+            float: left;
+            width: 80%;
+            padding: 0 20px;
         }
 
         .status {
-            float:right;
-            background-color:#e5e5e5;
-            padding: 8px;
-            margin-top:7px;
-            display:block;
-            width:50%;
-            color:black;
-        }
-        .menu a {
-            background-color:#e5e5e5;
-            padding:8px;
-            margin-top:7px;
-            display:block;
-            width:100%;
-            color:black;
-        }
-        .map {
-            float:left;
-            width:80%;
-            padding:0 20px;
-        }
-        .right {
-            background-color:#e5e5e5;
-            float:left;
-            width:20%;
-            padding:15px;
-            margin-top:7px;
-            text-align:center;
+            background-color: #e5e5e5;
+            float: right;
+            width: 20%;
+            padding: 15px;
+            margin-top: 7px;
+            text-align: center;
         }
 
-        @media only screen and (max-width:620px) {
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 600px;
+            height: 600px;
+            table-layout: fixed;
+
+        }
+
+        #mapView {
+            padding: 0px;
+            margin: 0 auto;
+            border: 2px solid #181818;
+        }
+        #mapView tr td {
+            width: 24px;
+            height: 24px;
+        }
+        #mapView tr:nth-child(2n) td:nth-child(2n+1) {
+            background: #9f9f9f;
+        }
+
+        #mapView tr:nth-child(2n+1) td:nth-child(2n) {
+            background: #9f9f9f;
+        }
+
+        @media only screen and (max-width: 620px) {
             /* For mobile phones: */
-            .menu, .main, .right {
-                width:100%;
+            .status, .map, .controls, .messages {
+                width: 100%;
             }
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
+    <script>
+        var SIZE = 25
+        $(document).ready(function () {
+            var space = 1;
+            for (var r = 0; r < SIZE; r++) {
+                var col = "";
+                for (var c = 0; c < SIZE; c++){
+                    col += "<td data-pos='" + space + "'></td>";
+                    space++;
+                }
+                $("#mapView").append("<tr>" + col + "</tr>");
+            }
+        });
+    </script>
 </head>
 <body style="font-family:Verdana;color:#000000;">
 
 <div style="background-color:#e5e5e5;padding:15px;text-align:center;">
-    <h1>The island of Frupal</h1>
+    <h1>The Island of Frupal</h1>
 </div>
 <div style="overflow:auto">
-    <!--
-        <div class="menu">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-            <a href="#">Link 4</a>
-        </div>
-    -->
+
     <div class="map">
-        <h2>The Map will go here</h2>
-        <p>Spicy jalapeno bacon ipsum dolor amet pork dolore proident ut, ad corned beef mollit ea ullamco.
-            Aute voluptate ham ea spare ribs. Veniam sed rump ad landjaeger, pancetta short ribs sirloin.
-            Nostrud sed cupidatat tempor. Meatloaf irure laboris eiusmod turducken tri-tip ham hock capicola tail
-            dolor laborum magna burgdoggen. Aute esse short ribs, strip steak pariatur tri-tip cupim voluptate
-            andouille reprehenderit in pig est sausage doner. Hamburger adipisicing esse chicken pork, dolore
-            kevin meatloaf quis.</p>
+        <h2>"I'm the Map"</h2>
+        <table id="mapView"></table>
     </div>
 
-    <div class="right">
+    <div class="status">
         <h2>Status</h2>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
     </div>
 
 
 </div>
-    <div class="contols">
+<div style="overflow:auto">
+    <div class="controls">
         <h2>Controls</h2>
+        <p>Spicy jalapeno bacon ipsum dolor amet anim lorem drumstick brisket porchetta veniam ad chuck rump ex short
+            loin sunt. Proident aute aliqua kielbasa boudin elit ham hock porchetta. Buffalo jowl velit commodo sed
+            picanha, excepteur laborum tri-tip sunt in. Consequat pork fatback, dolore leberkas sausage ea burgdoggen
+            magna elit spare ribs short ribs swine.</p>
     </div>
-    <div class="status">
+    <div class="messages">
         <h2>Messages to Read</h2>
+        <p>Spicy jalapeno bacon ipsum dolor amet officia eiusmod qui dolor pastrami tail tempor. Chuck nulla in
+            excepteur, bresaola turducken nisi pancetta beef ribs et labore ipsum dolore ham hock deserunt. Anim
+            consectetur laborum biltong, irure chuck ad quis officia salami buffalo. Minim turkey sirloin cow shoulder
+            doner.</p>
     </div>
+</div>
 </body>
 </html>
 
