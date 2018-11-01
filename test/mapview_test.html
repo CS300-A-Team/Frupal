@@ -2,13 +2,15 @@
 <title> A-Team Frupal </title>
 <head>
 <script src="../js/Tile.js"></script>
+<script src="../js/MessageModel.js"></script>
+<script src="../js/MessageView.js"></script>
 <script src="../js/MapView.js"></script>
 <script src="../js/mapModel.js"></script>
 <script src="../js/CharModel.js"></script>
 <script src="../js/Controller.js"></script>
 <script>
 
-let controller = new Controller( new CharModel( 5, 5, 2, 1000), new mapModel( 10 ) );
+let controller = new Controller( new CharModel( 5, 5, 2, 1000), new mapModel( 10 ), new MessageModel("You are in a meadow") );
 
 function loadMap(){
     var mapdiv = document.getElementById("map");
@@ -60,6 +62,7 @@ function west(){
     </form>
   </div>
   <div id="map"> </div>
+  <div id="message"> </div>
 <!-- <script type="text/javascript" src='scripts.js'></script> -->
 <script>
     controller.initGame();

@@ -1,10 +1,13 @@
 class Controller{
     
-    constructor( charmodel, mapmodel ){
+    constructor( charmodel, mapmodel, messagemodel ){
         // Set the pieces it controls
         this.mapmodel = mapmodel;
         this.charmodel = charmodel;
+        this.messagemodel = messagemodel;
+
         this.mapView = new MapView( mapmodel );
+        this.messageView = new MessageView( messagemodel );
     }
 
     // Slot for moving in Cardinal Directions
@@ -42,7 +45,9 @@ class Controller{
 
         // Check if character is now dead from moving
         if(this.charmodel.isDead()){
-            alert("Oh no! You died!!");
+            var deadMessage = "Oh no! You died!!";
+            this.messagemodel.message = deadMessage;
+            alert(deadMessage);
         }
 
         this.drawGame();
@@ -51,6 +56,7 @@ class Controller{
     drawGame(){
         // the views draw functions get called here
         this.mapView.redraw();
+        this.messageView.redraw();
     }
 
     initGame(){
