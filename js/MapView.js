@@ -31,8 +31,37 @@ class MapView{
             console.log(key);
             var cell = document.getElementById(key);
             if( tileHash[key].Visited ){
-                cell.innerHTML = "m";
-                cell.className = "meadow";
+                // Get the Terrain
+                switch(tileHash[key].Terrain){
+                    case Meadow:
+                        cell.innerHTML = "M";
+                        cell.className = "Meadow";
+                        break;
+                    case Forest:
+                        cell.innerHTML = "F";
+                        cell.className = "Forest";
+                        break;
+                    case Water:
+                        cell.innerHTML = "W";
+                        cell.className = "Water";
+                        break;
+                    case Wall:
+                        cell.innerHTML = "W";
+                        cell.className = "Wall";
+                        break;
+                    case Bog:
+                        cell.innerHTML = "B";
+                        cell.className = "Bog";
+                        break;
+                    case Swamp:
+                        cell.innerHTML = "S";
+                        cell.className = "Swamp";
+                        break;
+                    default:
+                        cell.innerHTML = "?";
+                        cell.className = "unknown";
+                        break;
+                }
             }
 
         }

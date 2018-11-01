@@ -16,10 +16,10 @@ function loadMap(){
     var mapdiv = document.getElementById("map");
     for( let i = 0; i < 4; i++ ){
         for( let j=0; j < 4; j++ ){
-            controller.mapmodel.addTile(0, i, j, 0, '');
+            controller.mapmodel.addTile(Forest, i, j, 0, '');
         }
     }
-    controller.mapmodel.addTile(0, 0, 0, 1, '');
+    controller.mapmodel.addTile(Meadow, 0, 0, 1, '');
 }
 loadMap();
 
