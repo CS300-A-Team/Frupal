@@ -1,9 +1,10 @@
 class Controller{
     
-    constructor( charmodel /* mapmodel, mapview */ ){
+    constructor( charmodel, mapmodel ){
         // Set the pieces it controls
-        //this.mapmodel = mapmodel;
+        this.mapmodel = mapmodel;
         this.charmodel = charmodel;
+        this.mapView = new MapView( mapmodel );
     }
 
     // Slot for moving in Cardinal Directions
@@ -47,8 +48,13 @@ class Controller{
         this.drawGame();
     }
 
-
     drawGame(){
         // the views draw functions get called here
+        this.mapView.redraw();
+    }
+
+    initGame(){
+        this.mapView.createMap();
+        this.drawGame();
     }
 }
