@@ -10,7 +10,7 @@ class mapModel{
        if(this.mapHash[X+','+Y] === undefined) {
             this.mapHash[X + ',' + Y] = new Tile(Ter, X, Y, Visit, Item);
         }else{
-            this.mapHash.modTile(Ter, X, Y, Visit, Item);
+            this.modTile(Ter, X, Y, Visit, Item);
         }
     }
 
