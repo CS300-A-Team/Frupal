@@ -40,3 +40,9 @@ class Tile {
     }
 }
 
+const Meadow = 0;
+const Forest = 1;
+const Water = 2;
+const Wall = 3;
+const Bog = 4;
+const Swamp = 5;

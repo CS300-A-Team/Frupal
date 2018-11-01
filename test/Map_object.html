@@ -4,14 +4,14 @@
 <script src="../js/mapModel.js"></script>
 <script>
 function test(){
-let tile = new Tile("Water", 0,0, 0, "Item");
+let tile = new Tile("Meadow", 0,0, 0, "Item");
 var debug = document.getElementById("debug");
 console.log(tile);
 debug.innerHTML = JSON.stringify( tile );
 }
 function getTileTest(){
     let map = new mapModel(5);
-    map.addTile("Meadow", 2, 1, 0, "Food");
+    map.addTile(Meadow, 2, 1, 0, "Food");
     let gotTile = map.getTile(2,1);
     var debug = document.getElementById("debug2");
     console.log(gotTile);
@@ -20,7 +20,7 @@ function getTileTest(){
 }
 function dirNTest(){
     let map = new mapModel(5);
-    map.addTile("Water", 3,3, 0,"Weapon");
+    map.addTile(1, 3,3, 0,"Weapon");
     let dirTile = map.getDirection("N",3,2);
     var debug = document.getElementById("debug3");
     console.log(dirTile);
@@ -28,7 +28,7 @@ function dirNTest(){
 }
 function dirNLoop(){
     let map = new mapModel(5);
-    map.addTile("Trees", 0,0, 0,"Drill");
+    map.addTile(Bog, 0,0, 0,"Drill");
     let dirTile = map.getDirection("N",0,5);
     var debug = document.getElementById("debug4");
     console.log(dirTile);
@@ -44,6 +44,14 @@ function setMapSize(){
     debug.innerHTML = JSON.stringify(newSize);
 
 }
+
+function noTile(){
+    let map = new mapModel(5)
+    let noTile = map.getDirection(1,1);
+    var debug = document.getElementById("debug6");
+    console.log(noTile);
+    debug.innerHTML = JSON.stringify(noTile);
+}
 </script>
 </head>
 <body>
@@ -52,12 +60,14 @@ function setMapSize(){
 <div id='debug3'></div>
 <div id="debug4"></div>
 <div id="debug5"></div>
+<div id="debug6"></div>
 <script>
     //test();
     getTileTest();
     dirNTest();
     dirNLoop();
     setMapSize();
+    noTile();
 </script>
 </body>
 </html>

@@ -7,7 +7,7 @@ class mapModel{
     }
 
     addTile(Ter, X, Y, Visit, Item){
-        if(this.mapHash.getTile(X, Y) == undefined) {
+       if(this.mapHash[X+','+Y] === undefined) {
             this.mapHash[X + ',' + Y] = new Tile(Ter, X, Y, Visit, Item);
         }else{
             this.mapHash.modTile(Ter, X, Y, Visit, Item);
@@ -36,12 +36,10 @@ class mapModel{
 
 
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
-    //Based upon the idea that 1,1 is the bottom left corner of the map
-    //possibly change to mapsize -1
     getDirection(Dir, X, Y){
         if(Dir == "N"){
             var norY = Y + 1;
-            if(norY > this.mapSize){
+            if(norY > (this.mapSize - 1)){
               norY = 0;
             }
             return this.mapHash[X+','+norY];
@@ -50,7 +48,7 @@ class mapModel{
         if(Dir == "S"){
             var souY = Y - 1;
             if(souY < 0){
-                souY = this.mapSize;
+                souY = this.mapSize - 1;
             }
             return this.mapHash[X+','+souY];
         }
@@ -58,14 +56,14 @@ class mapModel{
         if(Dir == "W"){
             var wesX = X - 1;
             if(wesX < 0){
-                wesX = this.mapSize;
+                wesX = this.mapSize - 1;
             }
             return this.mapHash[wesX+','+Y];
         }
 
         if(Dir == "E"){
             var easX = X + 1;
-            if(easX > this.mapSize){
+            if(easX > (this.mapSize - 1)){
                 easX = 0;
             }
             return this.mapHash[easX+','+Y];
