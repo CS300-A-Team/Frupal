@@ -1,9 +1,9 @@
 class CharModel{
-    constructor(X,Y, Energy, Frupals){
+    constructor(X,Y, Energy, Whiffles){
         this.x = X;
         this.y = Y;
         this.energy = Energy;
-        this.frupals = Frupals;
+        this.whiffles = Whiffles;
         this.inventory;
     }
     move( X, Y, EnergySpent ){
