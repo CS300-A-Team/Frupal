@@ -28,7 +28,6 @@ class MapView{
         var tileHash = this.model.mapHash
         for ( var key in tileHash ){
             // Set the corresponding tile to what it is
-            console.log(key);
             var cell = document.getElementById(key);
             if( tileHash[key].Visited ){
                 // Get the Terrain

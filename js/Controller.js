@@ -65,6 +65,8 @@ class Controller{
 
     initGame(){
         this.mapView.createMap();
+
+        this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y)
         this.drawGame();
     }
 }
