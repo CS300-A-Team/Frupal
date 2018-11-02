@@ -10,7 +10,7 @@
 <script src="../js/Controller.js"></script>
 <script>
 
-let controller = new Controller( new CharModel( 5, 5, 20, 1000), new mapModel( 10 ), new MessageModel("You are in a meadow") );
+let controller = new Controller( new CharModel( 5, 5, 200, 1000), new mapModel( 20 ), new MessageModel("You are in a meadow") );
 
 function loadMap(){
     var mapdiv = document.getElementById("map");
@@ -20,6 +20,8 @@ function loadMap(){
         }
     }
     controller.mapmodel.addTile(Meadow, 5, 5, 1, '');
+	controller.mapmodel.royalDiamondsX = 10;
+	controller.mapmodel.royalDiamondsY = 18;
 }
 loadMap();
 
