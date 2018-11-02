@@ -33,7 +33,33 @@ class mapModel{
     get mapSize() {
         return this._mapSize;
     }
-
+    setVisible(heroX, heroY){
+        this.mapHash[(heroX + 1)+','+heroY].Visited = 1; // 1 is visible
+        if(heroX + 1 < this.mapSize){       //
+            this.mapHash[(heroX + 1)+','+heroY].Visited = 1; // 1 is visible
+        }
+        if(heroX - 1 >= 0){
+            this.mapHash[(heroX - 1)+','+heroY].Visited = 1; // 1 is visible
+        }
+        if(heroY + 1 < this.mapSize){       //
+            this.mapHash[heroX+','+(heroY + 1)].Visited = 1; // 1 is visible
+        }
+        if(heroY - 1 >= 0){
+            this.mapHash[heroX+','+(heroY - 1)].Visited = 1; // 1 is visible
+        }
+        if(heroX + 1 < this.mapSize && heroY + 1 < this.mapSize){
+            this.mapHash[(heroX + 1)+','+(heroY + 1)].Visited = 1;
+        }
+        if(heroX - 1 >= 0 && heroY + 1 < this.mapSize){
+            this.mapHash[(heroX - 1)+','+(heroY + 1)].Visited = 1;
+        }
+        if(heroX + 1 < this.mapSize && heroY - 1 >= 0){
+            this.mapHash[(heroX + 1)+','+(heroY - 1)].Visited = 1;
+        }
+        if(heroX -1 >= 0 && heroY - 1 >= 0){
+            this.mapHash[(heroX - 1)+','+(heroY - 1)].Visited = 1;
+        }
+    }
 
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
     getDirection(Dir, X, Y){

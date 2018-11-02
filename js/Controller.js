@@ -31,7 +31,7 @@ class Controller{
         var x = this.charmodel.x;
         var y = this.charmodel.y;
         //var tile = mapmodel.nextDirection( Dir, x, y );
-
+        var tile = this.mapmodel.getDirection(Dir, x, y);
         // Check the tile
         // If cannot move into tile then penalize
         // else move into tile
@@ -41,16 +41,17 @@ class Controller{
         // If Diamond, then win the game
 
         //charmodel.move( newtile.x, newtile.y, 1 );
-        this.charmodel.move( x+1, y, 1 );
-
+        this.charmodel.move(tile.xLoc, tile.yLoc, 1 );
+        this.mapmodel.setVisible(tile.xLoc, tile.yLoc);
         // Check if character is now dead from moving
-        if(this.charmodel.isDead()){
+
+        /*if(this.charmodel.isDead()){                  //these code cause controller -> null?
             var deadMessage = "Oh no! You died!!";
             this.messagemodel.message = deadMessage;
             alert(deadMessage);
         }
 
-        this.drawGame();
+        this.drawGame();*/
     }
 
     drawGame(){
