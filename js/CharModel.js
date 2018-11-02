@@ -5,6 +5,9 @@ class CharModel{
         this.energy = Energy;
         this.whiffles = Whiffles;
         this.inventory;
+        // hasFoundRoyalDiamonds is a simple flag for now. Later, we might replace it 
+        // with a getter function that checks the inventory for Royal Diamonds
+        this.hasFoundRoyalDiamonds = false;
     }
     move( X, Y, EnergySpent ){
         this.x = X;

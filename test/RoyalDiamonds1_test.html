@@ -1,0 +1,88 @@
+<html>
+	<title> A-Team Frupal </title>
+<head>
+	<script src="../js/CharModel.js"></script>
+	<script src="../js/Controller.js"></script>
+	<script src="../js/mapModel.js"></script>
+	<script src="../js/MapView.js"></script>
+	<script src="../js/MessageModel.js"></script>
+	<script src="../js/MessageView.js"></script>
+	<script src="../js/Tile.js"></script>
+	<script>
+
+		let controller = null;
+		
+		function onLoad() {
+			// Create a scenario for testing.
+			// 10x10 map with player at 5, 5 and jewels at 6, 6
+			let mapModelObject = new mapModel(10);
+			controller = new Controller(
+				new CharModel(5, 5, 100, 1000), 
+				mapModelObject,
+				new MessageModel("You are in the Battle Bus."));
+			mapModelObject.royalDiamondsX = 6;
+			mapModelObject.royalDiamondsY = 6;
+			// Fill the mapmodel with empty tiles, which is required in this branch.
+			for (var i = 1; i <= 10; i ++) {
+				for (var j = 1; j <= 10; j ++) {
+					mapModelObject.addTile(Meadow, i, j, 0, "");
+				}
+			}
+		
+			// First, walk around the diamonds in a circle. This should not trigger the
+			// win condition
+			controller.moveEast();
+			controller.moveEast();
+			controller.moveNorth();
+			controller.moveNorth();
+			controller.moveWest();
+			controller.moveWest();
+			controller.moveSouth();
+			controller.moveSouth();
+			
+			// Next walk into the diamonds. This should trigger the win condition.
+			controller.moveEast();
+			controller.moveNorth();
+			
+			;	
+		}
+		
+		function north(){
+			controller.moveNorth();
+		}
+		function south(){
+			controller.moveSouth();
+		}
+		function east(){
+			controller.moveEast();
+		}
+		function west(){
+			controller.moveWest();
+		}
+		
+	</script>
+
+<link rel ="stylesheet" href="../styles.css">
+</head>
+<body onload="onLoad();">
+  <div class="container">
+    <h1> FRUPAL - the game... </h1>
+    <p>
+    <form name="buttons" class="flex">
+      <div class="form-row">
+         <input type="button" value="NORTH" onClick="controller.moveNorth()">
+      </div>
+      <div class="form-row">
+        <input type="button" value="WEST" onClick="controller.moveWest()">
+        <input type="button" value="EAST" onClick="controller.moveEast()">
+      </div>
+      <div class="form-row">
+        <input type="button" value="SOUTH" onClick="controller.moveSouth()">
+      </div>
+    </form>
+  </div>
+  <div id="map"> </div>
+  <div id="message"> </div>
+<!-- <script type="text/javascript" src='scripts.js'></script> -->
+</body>
+</html>
