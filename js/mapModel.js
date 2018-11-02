@@ -33,30 +33,44 @@ class mapModel{
     get mapSize() {
         return this._mapSize;
     }
+    initTileMeadow(x, y){
+        let tile = this.getTile(x, y);
+        if(tile == null || tile === undefined){
+            this.addTile(Meadow, x, y, 1, '');          //if tile is not exist, add a meadow tile.
+        }
+    }
     setVisible(heroX, heroY){
         this.mapHash[heroX+','+heroY].Visited = 1; // 1 is visible
-        if(heroX + 1 < this.mapSize){       //
-            this.mapHash[(heroX + 1)+','+heroY].Visited = 1; // 1 is visible
+        if(heroX + 1 < this.mapSize){
+            this.initTileMeadow(heroX + 1, heroY);
+            this.mapHash[(heroX + 1)+','+heroY].Visited = 1;
         }
         if(heroX - 1 >= 0){
-            this.mapHash[(heroX - 1)+','+heroY].Visited = 1; // 1 is visible
+            this.initTileMeadow(heroX - 1, heroY);
+            this.mapHash[(heroX - 1)+','+heroY].Visited = 1;
         }
-        if(heroY + 1 < this.mapSize){       //
-            this.mapHash[heroX+','+(heroY + 1)].Visited = 1; // 1 is visible
+        if(heroY + 1 < this.mapSize){
+            this.initTileMeadow(heroX, heroY + 1);
+            this.mapHash[heroX+','+(heroY + 1)].Visited = 1;
         }
         if(heroY - 1 >= 0){
-            this.mapHash[heroX+','+(heroY - 1)].Visited = 1; // 1 is visible
+            this.initTileMeadow(heroX, heroY - 1);
+            this.mapHash[heroX+','+(heroY - 1)].Visited = 1;
         }
         if(heroX + 1 < this.mapSize && heroY + 1 < this.mapSize){
+            this.initTileMeadow(heroX + 1, heroY + 1);
             this.mapHash[(heroX + 1)+','+(heroY + 1)].Visited = 1;
         }
         if(heroX - 1 >= 0 && heroY + 1 < this.mapSize){
+            this.initTileMeadow(heroX - 1, heroY + 1);
             this.mapHash[(heroX - 1)+','+(heroY + 1)].Visited = 1;
         }
         if(heroX + 1 < this.mapSize && heroY - 1 >= 0){
+            this.initTileMeadow(heroX + 1, heroY - 1);
             this.mapHash[(heroX + 1)+','+(heroY - 1)].Visited = 1;
         }
         if(heroX -1 >= 0 && heroY - 1 >= 0){
+            this.initTileMeadow(heroX - 1, heroY - 1);
             this.mapHash[(heroX - 1)+','+(heroY - 1)].Visited = 1;
         }
     }

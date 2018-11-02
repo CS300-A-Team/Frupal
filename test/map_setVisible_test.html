@@ -8,37 +8,29 @@
     <script src="../js/CharModel.js"></script>
     <script src="../js/Controller.js"></script>
     <script>
-        function test(){
-            let controller = new Controller( new CharModel( 1, 1, 3, 1000), new mapModel( 3 ), new MessageModel("You are in a meadow") );
-            for( let i = 0; i < 3; i++ ){
-                for( let j=0; j < 3; j++ ){
-                    controller.mapmodel.addTile(Forest, i, j, 0, '');
-                }
-            }
+            var SIZE = 10;
+            let controller = new Controller( new CharModel( 0, 0, 3, 1000), new mapModel( SIZE ), new MessageModel("You are in a meadow") );
             controller.mapmodel.addTile(Meadow, 0, 0, 1, '');
-            controller.moveNorth();
-            var debug = document.getElementById("debug1");
-            debug.innerHTML = JSON.stringify( controller );
-
-
-            /*controller.moveNorth();
-            debug = document.getElementById("debug3");
-            debug.innerHTML = JSON.stringify( controller );
-
-            controller.moveSouth();
-            debug = document.getElementById("debug3");
-            debug.innerHTML = JSON.stringify( controller );*/
-
-        }
+            //controller.mapmodel.setVisible(controller.charmodel.x, controller.charmodel.y);
     </script>
 </head>
-<div id="debug"> </div>
-<div id="debug1"> </div>
-<p>----------------------------------------</p>
-<div id="debug2"> </div>
-<div id="debug3"> </div>
-<div id="debug4"> </div>
-<script>
-    test();
-</script>
+<p><script>
+    controller.mapmodel.setVisible(controller.charmodel.x, controller.charmodel.y);
+    document.writeln(JSON.stringify(controller));
+</script></p>
+<p>-----------------------------------------</p>
+<p><script>
+    controller.moveNorth();
+    document.writeln(JSON.stringify(controller));
+</script></p>
+<p>-----------------------------------------</p>
+<p><script>
+    controller.moveNorth();
+    document.writeln(JSON.stringify(controller));
+</script></p>
+<p>-----------------------------------------</p>
+<p><script>
+    controller.moveNorth();
+    document.writeln(JSON.stringify(controller));
+</script></p>
 </html>
