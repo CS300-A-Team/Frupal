@@ -77,38 +77,47 @@ class mapModel{
 
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
     getDirection(Dir, X, Y){
-        if(Dir == "N"){
-            var norY = Y + 1;
-            if(norY > (this.mapSize - 1)){
-              norY = 0;
+        var x = X;
+        var y = Y;
+        switch (Dir){
+            case "N":
+            y = Y + 1;
+            if(y > (this.mapSize - 1)){
+              y = 0;
             }
-            return this.mapHash[X+','+norY];
+            break;
+
+
+            case "S":
+            y = Y - 1;
+            if(y < 0){
+                y = this.mapSize - 1;
+            }
+            break;
+
+
+            case "W":
+            x= X - 1;
+            if(x < 0){
+                x = this.mapSize - 1;
+            }
+            break;
+
+
+            case "E":
+            x = X + 1;
+            if(x > (this.mapSize - 1)){
+                x = 0;
+            }
         }
 
-        if(Dir == "S"){
-            var souY = Y - 1;
-            if(souY < 0){
-                souY = this.mapSize - 1;
-            }
-            return this.mapHash[X+','+souY];
-        }
 
-        if(Dir == "W"){
-            var wesX = X - 1;
-            if(wesX < 0){
-                wesX = this.mapSize - 1;
-            }
-            return this.mapHash[wesX+','+Y];
-        }
-
-        if(Dir == "E"){
-            var easX = X + 1;
-            if(easX > (this.mapSize - 1)){
-                easX = 0;
-            }
-            return this.mapHash[easX+','+Y];
-        }
-
+        var tile =  this.mapHash[x+','+y];
+        if( tile == null ) {
+            this.initTileMeadow(x, y);
+            tile = this.mapHash[x+','+y];
+     }
+     return tile;
     }
 
 }

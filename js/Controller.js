@@ -18,10 +18,10 @@ class Controller{
        this.move ( 'S' );
     }
     moveEast(){
-        this.move ('E');
+        this.move ( 'E' );
     }
     moveWest(){
-        this.move ('E');
+        this.move ( 'W' );
     }
 
     // Actual Move call logic

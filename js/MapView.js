@@ -10,11 +10,11 @@ class MapView{
         var table = document.createElement('table');
             table.setAttribute("border",1);
             mapdiv.appendChild(table);
-        for( let x = 0; x < this.model.mapSize; x++){
+        for( let y = this.model.mapSize - 1; y>= 0; y--){
             // Create new row
             var row = document.createElement('tr');
                 table.appendChild(row);
-            for( let y = 0; y < this.model.mapSize; y++ ){
+            for( let x = 0; x < this.model.mapSize; x++ ){
                 var cell = document.createElement("td");
                     cell.id = x+','+y;
                     cell.className = "blank";
