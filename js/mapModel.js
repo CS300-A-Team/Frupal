@@ -30,7 +30,7 @@ class mapModel{
     set mapSize(newSize){
         this._mapSize = newSize;
     }
-    get mapSize() {
+    get mapSize(){
         return this._mapSize;
     }
     initTileMeadow(x, y){
