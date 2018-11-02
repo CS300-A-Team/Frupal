@@ -34,7 +34,7 @@ class mapModel{
         return this._mapSize;
     }
     setVisible(heroX, heroY){
-        this.mapHash[(heroX + 1)+','+heroY].Visited = 1; // 1 is visible
+        this.mapHash[heroX+','+heroY].Visited = 1; // 1 is visible
         if(heroX + 1 < this.mapSize){       //
             this.mapHash[(heroX + 1)+','+heroY].Visited = 1; // 1 is visible
         }
