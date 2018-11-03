@@ -63,7 +63,7 @@ class Controller{
             this.messagemodel.message = deadMessage;
             alert(deadMessage);
         }
-
+        this.mapView.moveChar(this.charmodel.x, this.charmodel.y);
         this.drawGame();
     }
 
@@ -74,6 +74,7 @@ class Controller{
     }
 
     initGame(){
+        this.mapView.moveChar(this.charmodel.x, this.charmodel.y);
         this.mapView.createMap();
 
         this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y)

@@ -1,6 +1,8 @@
 class MapView{
     constructor( map ){
         this.model = map;
+        this.charX = -1;
+        this.charY = -1;
     }
 
     createMap(){
@@ -21,6 +23,16 @@ class MapView{
                 row.appendChild(cell);
             }
         }
+    }
+    moveChar(X, Y){
+        this.charX = X;
+        this.charY = Y;
+    }
+    drawChar(){
+        if( this.charX === -1)
+            return;
+        var charCell = document.getElementById(this.charX+','+this.charY);
+        charCell.innerHTML = charCell.innerHTML + "@";
     }
 
     redraw(){
@@ -64,5 +76,6 @@ class MapView{
             }
 
         }
+        this.drawChar();
     }
 }
