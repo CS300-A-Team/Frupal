@@ -46,9 +46,6 @@ class Controller{
             this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y)
         }
 
-
-        this.charmodel.move(tile.xLoc, tile.yLoc, 1);	// 1 == "1 energy, as a placeholder"
-
         // Handle the win and lose conditions
         if (this.charmodel.x == this.mapmodel.royalDiamondsX && 
         	this.charmodel.y == this.mapmodel.royalDiamondsY){
