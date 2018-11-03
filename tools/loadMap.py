@@ -12,20 +12,16 @@ def static_vars(**kwargs):
             setattr(func, k, kwargs[k])
         return func
     return decorate
-# Helper function that takes a key value pair
-# Print everything out this will probably be done by the Helper Function
-def printScript( key, value ):
-    print("localStorage.setItem('" + key + "', '" + value + "');" )
+# Helper function that 
 
 # Function for Map Name
 @static_vars(counter=0)
 def loadMapname( line ):
     if loadMapname.counter == 0:
-        key = "mapname"
+        print("  model.mapModel.name = '" + line +"';");
     else:
-        key = "mapsize"
+        print("  model.mapModel.size = " + line +";");
     
-    printScript( key, line )
     loadMapname.counter = loadMapname.counter + 1
     return
 
@@ -34,12 +30,16 @@ def loadMapname( line ):
 @static_vars(counter=0)
 def loadCharacter( line ):
     if loadCharacter.counter == 0:
-        key = "char"
+        charLocInfo = line.split(",")
+        print("  model.charModel.xPosition = " + charLocInfo[0] +";");
+        print("  model.charModel.yPosition = " + charLocInfo[1] +";");
+    elif loadCharacter.counter == 1:
+        print("  model.charModel.energy = " + line +";");
+    elif loadCharacter.counter == 2:
+        print("  model.charModel.whiffles = " + line +";");
     else:
-        key = "stat" + str(loadCharacter.counter)
-
-    printScript( key, line )
-
+        print("  model.charModel.inventory.push('" + line +"');");
+		
     loadCharacter.counter = loadCharacter.counter + 1
     return
 
@@ -49,8 +49,9 @@ def loadMap( line ):
     # Store map lines
     locationInfo = line.split(",")
     location = locationInfo[0] + "," + locationInfo[1]
-    locInfo = ",".join(locationInfo[2:-1])
-    printScript( "loc-" + location, locInfo )
+    locInfo = locationInfo[3] + "," + location + "," + locationInfo[2] +", null"
+	
+    print( "  model.mapModel['" + location + "'] = new Tile(" + locInfo + ");")
     return
 
 
@@ -71,8 +72,8 @@ def main():
 
     func = statefunc.get( state )
 
-    print( "<script>") 
-    print( "localStorage.clear();" ) 
+    print( "function buildModel() {" ) 
+    print( "  var model = new FrupalModel();" ) 
     for mapLine in mapFile:
         line = mapLine.rstrip()
         if line == "######################":
@@ -80,6 +81,7 @@ def main():
             func = statefunc.get( state )
         else:
             func( line )
-    print( "</script>" )
+    print( "  return model;" )
+    print( "}" )
 
 main()
