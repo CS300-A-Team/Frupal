@@ -1,13 +1,30 @@
 <html>
 <title> A-Team Frupal </title>
 <head>
+<script src="js/Tile.js"></script>
+<script src="js/MessageModel.js"></script>
+<script src="js/MessageView.js"></script>
+<script src="js/MapView.js"></script>
+<script src="js/mapModel.js"></script>
 <script src="js/CharModel.js"></script>
 <script src="js/Controller.js"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
 
-let controller = new Controller( new CharModel( 12, 12, 2, 1000) );
+let controller = new Controller( new CharModel( 5, 5, 200, 1000), new mapModel( 20 ), new MessageModel("You are in a meadow") );
 
+function loadMap(){
+    var mapdiv = document.getElementById("map");
+    for( let i = 0; i < 4; i++ ){
+        for( let j=0; j < 4; j++ ){
+            controller.mapmodel.addTile(Forest, i, j, 0, '');
+        }
+    }
+    controller.mapmodel.addTile(Meadow, 5, 5, 1, '');
+	controller.mapmodel.royalDiamondsX = 10;
+	controller.mapmodel.royalDiamondsY = 18;
+}
+loadMap();
 
 function refresh(){
   $('span#location').text(controller.charmodel.x + ', ' + controller.charmodel.y);
@@ -62,5 +79,10 @@ function west(){
   <div>Current Location: <span id="location"> </span></div>
   <div>Energy: <span id="energy"> </span></div>
   <div>Whiffles: <span id="whiffles"> </span></div>
+  <div id="message"> </div>
+  <div id="map"> </div>
+  <script>
+     controller.initGame();
+  </script>
 </body>
 </html>
