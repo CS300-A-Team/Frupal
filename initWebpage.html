@@ -3,24 +3,37 @@
 <head>
 <script src="js/CharModel.js"></script>
 <script src="js/Controller.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script>
 
 let controller = new Controller( new CharModel( 12, 12, 2, 1000) );
 
+
+function refresh(){
+  $('span#location').text(controller.charmodel.x + ', ' + controller.charmodel.y);
+  $('span#energy').text(controller.charmodel.energy);
+  $('span#whiffles').text(controller.charmodel.whiffles);
+}
+
 function north(){
   controller.moveNorth();
+  refresh();
 }
 
 function south(){
   controller.moveSouth();
+  refresh();
 }
 
 function east(){
   controller.moveEast();
+  refresh();
 }
 
 function west(){
   controller.moveWest();
+  refresh();
+
 }
 </script>
 </head>
@@ -28,7 +41,8 @@ function west(){
 <head>
 <link rel ="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="refresh();">
+  
   <div class="container">
     <h1> FRUPAL - the game... </h1>
     <p>
@@ -45,6 +59,8 @@ function west(){
       </div>
     </form>
   </div>
-<!-- <script type="text/javascript" src='scripts.js'></script> -->
+  <div>Current Location: <span id="location"> </span></div>
+  <div>Energy: <span id="energy"> </span></div>
+  <div>Whiffles: <span id="whiffles"> </span></div>
 </body>
 </html>
