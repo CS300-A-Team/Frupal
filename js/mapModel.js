@@ -93,11 +93,16 @@ class mapModel{
         }else if(heroX + 1 >= this.mapSize && heroY + 1 >= this.mapSize){
             this.initTileMeadow(0 ,0);
             this.mapHash[0+','+0].Visited = 1;
-            //WRAPS TILE TO LEFT SIDE IF HERO IS ON RIGHT EDGE OF MAP
+            //WRAPS TILE TO BOTTOM
+        }else if(heroX + 1 < this.mapSize && heroY + 1 >= this.mapSize){
+            this.initTileMeadow(heroX + 1, 0);
+            this.mapHash[(heroX + 1) + ',' + 0].Visited = 1;
+            //WRAPS TILE TO OTHER SIDE
         }else if(heroX + 1 >= this.mapSize && heroY + 1 < this.mapSize){
-            this.initTileMeadow(0, heroY + 1);
-            this.mapHash[0 + ',' + (heroY + 1)].Visited = 1;
+            this.initTileMeadow(0, heroY +1);
+            this.mapHash[0+','+(heroY +1)].Visited = 1;
         }
+
         //REVEALS TILE TO THE TOP LEFT OF HERO
         if(heroX - 1 >= 0 && heroY + 1 < this.mapSize){
             this.initTileMeadow(heroX - 1, heroY + 1);
@@ -106,11 +111,17 @@ class mapModel{
         }else if(heroX - 1 < 0 && heroY + 1 >= this.mapSize){
             this.initTileMeadow(this.mapSize -1, 0);
             this.mapHash[(this.mapSize -1)+','+0].Visited = 1;
-            //WRAPS TILE TO RIGHT SIDE IF HERO IS ON LEFT EDGE OF MAP
-        }else if(heroX - 1 < 0 && heroY + 1 < this.mapSize){
-            this.initTileMeadow(this.mapSize - 1, heroY + 1);
+            //WRAPS TILE TO BOTTOM
+        }else if(heroX - 1 > 0 && heroY + 1 >= this.mapSize){
+            this.initTileMeadow(heroX - 1, 0);
+            this.mapHash[(heroX -1)+','+ 0].Visited = 1;
+            //WRAPS TILE TO OTHER SIDE
+        }else if(heroX -1 < 0 && heroY + 1 < this.mapSize){
+            this.initTileMeadow(this.mapSize -1, heroY + 1);
             this.mapHash[(this.mapSize -1)+','+(heroY + 1)].Visited = 1;
         }
+
+
         //REVEALS TILE TO BOTTOM RIGHT OF HERO
         if(heroX + 1 < this.mapSize && heroY - 1 >= 0){
             this.initTileMeadow(heroX + 1, heroY - 1);
@@ -119,11 +130,18 @@ class mapModel{
         }else if(heroX + 1 >= this.mapSize && heroY - 1 < 0){
             this.initTileMeadow(0, this.mapSize -1);
             this.mapHash[0+','+(this.mapSize - 1)].Visited = 1;
-            //WRAPS TILE TO LEFT SIDE IF HERO ON RIGHT EDGE OF MAP
+            //WRAPS TILE TO TOP
+        }else if(heroX + 1 < this.mapSize && heroY - 1 < 0){
+            this.initTileMeadow(heroX + 1, this.mapSize -1);
+            this.mapHash[(heroX + 1)+','+(this.mapSize -1)].Visited = 1;
+            //WRAPS TILE TO OTHER SIDE
         }else if(heroX + 1 >= this.mapSize && heroY - 1 >= 0){
-            this.initTileMeadow(0, heroY - 1);
+            this.initTileMeadow(0 , heroY -1);
             this.mapHash[0+','+(heroY -1)].Visited = 1;
         }
+
+
+
         //REVEALS TILE TO BOTTOM LEFT OF HERO
         if(heroX -1 >= 0 && heroY - 1 >= 0){
             this.initTileMeadow(heroX - 1, heroY - 1);
@@ -132,10 +150,14 @@ class mapModel{
         }else if(heroX -1 < 0 && heroY - 1 < 0){
             this.initTileMeadow(this.mapSize - 1, this.mapSize - 1);
             this.mapHash[(this.mapSize -1)+','+(this.mapSize-1)].Visited = 1;
-            //WRAPS TILE TO RIGHT SIDE IF HERO IS ON LEFT EDGE OF MAP
+            //WRAPS TILE TO TOP
+        }else if(heroX - 1 > 0 && heroY - 1 < 0){
+            this.initTileMeadow(heroX - 1, this.mapSize -1);
+            this.mapHash[(heroX - 1)+','+(this.mapSize - 1)].Visited = 1;
+            //WRAPS TILE TO OTHER SIDE
         }else if(heroX - 1 < 0 && heroY - 1 >= 0){
-            this.initTileMeadow(this.mapSize - 1, heroY -1);
-            this.mapHash[(this.mapSize -1)+','+(heroY -1)].Visited = 1;
+            this.initTileMeadow(this.mapSize -1, heroY -1);
+            this.mapHash[(this.mapSize - 1)+','+(heroY -1)].Visited = 1;
         }
     }
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
