@@ -6,6 +6,7 @@ class Controller{
         this.charmodel = charmodel;
         this.messagemodel = messagemodel;
 
+        this.charStatusView = new CharStatusView( charmodel );
         this.mapView = new MapView( mapmodel );
         this.messageView = new MessageView( messagemodel );
     }
@@ -69,6 +70,7 @@ class Controller{
 
     drawGame(){
         // the views draw functions get called here
+        this.charStatusView.redraw();
         this.mapView.redraw();
         this.messageView.redraw();
     }
