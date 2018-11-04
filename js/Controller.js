@@ -63,6 +63,7 @@ class Controller{
         }
         this.mapView.moveChar(this.charmodel.x, this.charmodel.y);
         this.drawGame();
+        this.saveModelToLocalStorage();
     }
 
     drawGame(){
@@ -78,5 +79,13 @@ class Controller{
 
         this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y)
         this.drawGame();
+    }
+
+    saveModelToLocalStorage(){
+        // Create a temporary FrupalModel object with a copy of our models' data
+        let frupalModel = new FrupalModel();
+        frupalModel.mapmodel = this.mapmodel;
+        frupalModel.charModel = this.charmodel;
+        localStorage.setItem("map", JSON.stringify(frupalModel));
     }
 }
