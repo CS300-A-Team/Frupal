@@ -32,7 +32,7 @@ class MapView{
         if( this.charX === -1)
             return;
         var charCell = document.getElementById(this.charX+','+this.charY);
-        charCell.innerHTML = charCell.innerHTML + "@";
+        charCell.innerHTML = charCell.innerHTML + "|@";
     }
 
     redraw(){
@@ -73,6 +73,47 @@ class MapView{
                         cell.className = "unknown";
                         break;
                 }
+
+                //display items on the map
+                if (tileHash[key].Item != 'None' && tileHash[key].Item != '') {
+                    cell.innerHTML += "|" + tileHash[key].Item;
+                }
+
+                /*
+                if (tileHash[key].Item == 'Axe') {
+                    cell.innerHTML += "|" + 'A';
+                }
+                else if(tileHash[key].Item == 'Treasure Chest') {
+                    cell.innerHTML += "|" + 'TC';
+                }
+                else if(tileHash[key].Item == 'Clue') {
+                    cell.innerHTML += "|" + 'C';
+                }
+                else if(tileHash[key].Item == 'Hatchet') {
+                    cell.innerHTML += "|" + 'H';
+                }
+                else if(tileHash[key].Item == 'Chainsaw') {
+                    cell.innerHTML += "|" + 'CS';
+                }
+                else if(tileHash[key].Item == 'Chisel') {
+                    cell.innerHTML += "|" + 'Ch';
+                }
+                else if(tileHash[key].Item == 'Sledge') {
+                    cell.innerHTML += "|" + 'S';
+                }
+                else if(tileHash[key].Item == 'Jackhammer') {
+                    cell.innerHTML += "|" + 'JH';
+                }
+                else if(tileHash[key].Item == 'Machete') {
+                    cell.innerHTML += "|" + 'M';
+                }
+                else if(tileHash[key].Item == 'Shears') {
+                    cell.innerHTML += "|" + 'Sh';
+                }
+                else if(tileHash[key].Item == 'Binoculars') {
+                    cell.innerHTML += "|" + 'B';
+                }
+                */
             }
 
         }
