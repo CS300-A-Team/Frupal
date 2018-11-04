@@ -77,6 +77,17 @@ table {
     background: #9f9f9f;
 }
 
+.container {
+  margin: 3em auto;
+  max-width: 400px;
+}
+
+.form-row {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+}
+
 @media only screen and (max-width: 800px) {
     /* For mobile phones: */
     .controls, .messages {

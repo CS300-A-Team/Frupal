@@ -1,5 +1,5 @@
-<body>
 <!DOCTYPE html>
+<title> A-Team Frupal </title>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +19,43 @@
             }
         });
     </script>
+    <script src="js/Tile.js"></script>
+    <script src="js/MessageModel.js"></script>
+    <script src="js/MessageView.js"></script>
+    <script src="js/MapView.js"></script>
+    <script src="js/mapModel.js"></script>
+    <script src="js/CharModel.js"></script>
+    <script src="js/CharStatusView.js"></script>
+    <script src="js/Controller.js"></script>
+    <script src="js/FrupalModel.js"></script>
+    <script>
+
+        function loadMap() {
+            var modelJSON = localStorage.getItem("map");
+            return new FrupalModel(JSON.parse(modelJSON));
+        }
+
+        var model = loadMap();
+
+        let controller = new Controller(model.charModel, model.mapmodel, new MessageModel("Start the game"));
+
+
+        function north() {
+            controller.moveNorth();
+        }
+
+        function south() {
+            controller.moveSouth();
+        }
+
+        function east() {
+            controller.moveEast();
+        }
+
+        function west() {
+            controller.moveWest();
+        }
+    </script>
 </head>
 <body style="font-family:Verdana;color:#000000;">
 
@@ -29,26 +66,47 @@
 
     <div class="map">
         <h2>"I'm the Map"</h2>
+        <div id="map"></div>
+        <!--
         <table id="mapView"></table>
+        -->
     </div>
 
     <div class="status">
         <h2>Status</h2>
-        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+        <div>Energy: <span id="energy"> </span></div>
+        <div>Whiffles: <span id="whiffles"> </span></div>
+        <div>Current Location: <span id="location"> </span></div>
     </div>
 
 
 </div>
 <div style="overflow:auto">
     <div class="controls">
-        <h2>Controls</h2>
-        <p>Spicy jalapeno bacon ipsum dolor amet anim lorem drumstick brisket porchetta veniam ad chuck rump ex short
-            loin sunt. Proident aute aliqua kielbasa boudin elit ham hock porchetta. Buffalo jowl velit commodo sed
-            picanha, excepteur laborum tri-tip sunt in. Consequat pork fatback, dolore leberkas sausage ea burgdoggen
-            magna elit spare ribs short ribs swine.</p>
+        <div class="container">
+            <h2>Controls</h2>
+            <form name="buttons" class="flex">
+                <div class="form-row">
+                    <input type="button" value="NORTH" onClick="north()">
+                </div>
+                <div class="form-row">
+                    <input type="button" value="WEST" onClick="west()">
+                    <input type="button" value="EAST" onClick="east()">
+                </div>
+                <div class="form-row">
+                    <input type="button" value="SOUTH" onClick="south()">
+                </div>
+            </form>
+        </div>
+
+        <script>
+            controller.initGame();
+        </script>
+
     </div>
     <div class="messages">
         <h2>Messages to Read</h2>
+        <div id="message"></div>
         <p>Spicy jalapeno bacon ipsum dolor amet officia eiusmod qui dolor pastrami tail tempor. Chuck nulla in
             excepteur, bresaola turducken nisi pancetta beef ribs et labore ipsum dolore ham hock deserunt. Anim
             consectetur laborum biltong, irure chuck ad quis officia salami buffalo. Minim turkey sirloin cow shoulder
