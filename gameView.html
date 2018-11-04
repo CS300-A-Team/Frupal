@@ -1,0 +1,60 @@
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
+    <script>
+        var SIZE = 25
+        $(document).ready(function () {
+            var space = 1;
+            for (var r = 0; r < SIZE; r++) {
+                var col = "";
+                for (var c = 0; c < SIZE; c++) {
+                    col += "<td data-pos='" + space + "'></td>";
+                    space++;
+                }
+                $("#mapView").append("<tr>" + col + "</tr>");
+            }
+        });
+    </script>
+</head>
+<body style="font-family:Verdana;color:#000000;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+    <h1>The Island of Frupal</h1>
+</div>
+<div style="overflow:auto">
+
+    <div class="map">
+        <h2>"I'm the Map"</h2>
+        <table id="mapView"></table>
+    </div>
+
+    <div class="status">
+        <h2>Status</h2>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+    </div>
+
+
+</div>
+<div style="overflow:auto">
+    <div class="controls">
+        <h2>Controls</h2>
+        <p>Spicy jalapeno bacon ipsum dolor amet anim lorem drumstick brisket porchetta veniam ad chuck rump ex short
+            loin sunt. Proident aute aliqua kielbasa boudin elit ham hock porchetta. Buffalo jowl velit commodo sed
+            picanha, excepteur laborum tri-tip sunt in. Consequat pork fatback, dolore leberkas sausage ea burgdoggen
+            magna elit spare ribs short ribs swine.</p>
+    </div>
+    <div class="messages">
+        <h2>Messages to Read</h2>
+        <p>Spicy jalapeno bacon ipsum dolor amet officia eiusmod qui dolor pastrami tail tempor. Chuck nulla in
+            excepteur, bresaola turducken nisi pancetta beef ribs et labore ipsum dolore ham hock deserunt. Anim
+            consectetur laborum biltong, irure chuck ad quis officia salami buffalo. Minim turkey sirloin cow shoulder
+            doner.</p>
+    </div>
+</div>
+</body>
+</html>
+
