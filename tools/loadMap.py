@@ -18,9 +18,9 @@ def static_vars(**kwargs):
 @static_vars(counter=0)
 def loadMapname( line ):
     if loadMapname.counter == 0:
-        print("  model.mapModel = new mapModel('" + line+"', ", end="");
+        print("        model.mapmodel.name = '" + line +"';")
     else:
-        print( line +");");
+        print("        model.mapmodel.mapSize = " + line +";\n");
     
     loadMapname.counter = loadMapname.counter + 1
     return
@@ -30,13 +30,13 @@ def loadMapname( line ):
 @static_vars(counter=0)
 def loadCharacter( line ):
     if loadCharacter.counter == 0:
-        print("  model.charModel = new CharModel("+line, end="");
+        print("        model.charModel = new CharModel("+line, end="");
     elif loadCharacter.counter == 1:
         print(", " + line, end="" );
     elif loadCharacter.counter == 2:
         print(", " + line + ");");
     else:
-        print("  model.charModel.inventory.push('" + line +"');");
+        print("        model.charModel.inventory.push('" + line +"');");
 		
     loadCharacter.counter = loadCharacter.counter + 1
     return
@@ -48,7 +48,7 @@ def loadMap( line ):
     l = line.split(",")
     l[-1] = "'" + l[-1] + "'"
     tile = ','.join( l )
-    print( "  model.mapModel.addTile(" + tile + ");" );
+    print( "        model.mapmodel.addTile(" + tile + ");" );
     return
 
 
@@ -70,13 +70,14 @@ def main():
     func = statefunc.get( state )
 
     print( "<html><head>")
-    print( "<script src='../js/mapModel.js'></script>\n\
-           <script src='../js/CharModel.js''></script>\n\
-           <script src='../js/Tile.js'></script>")
+    print( "\
+        <script src='../js/mapModel.js'></script>\n\
+        <script src='../js/CharModel.js'></script>\n\
+        <script src='../js/Tile.js'></script>\n\
+        <script src='../js/FrupalModel.js'></script>")
     print( "<script>" )
-    print( "function buildModel() {" ) 
-    print( "  var mapmodel = new mapModel();" )
-    print( "  var charmodel = new CharModel()")
+    print( "    function buildModel() {" )
+    print( "        var model = new FrupalModel;" )
     for mapLine in mapFile:
         line = mapLine.rstrip()
         if line == "######################":
@@ -84,10 +85,10 @@ def main():
             func = statefunc.get( state )
         else:
             func( line )
-    print( "  localStorage.clear();")
-    print( "  localStorage.setItem('map', JSON.stringify(model));" )
-    print( "}" )
-    print( "buildModel();")
+    print( "        localStorage.clear();")
+    print( "        localStorage.setItem('map', JSON.stringify(model));" )
+    print( "    }" )
+    print( "    buildModel();")
     print( "</script></head>")
     print( "<body></body></html>")
 

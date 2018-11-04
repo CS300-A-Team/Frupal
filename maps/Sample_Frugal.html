@@ -1,14 +1,25 @@
+<html><head>
+        <script src='../js/mapModel.js'></script>
+        <script src='../js/CharModel.js'></script>
+        <script src='../js/Tile.js'></script>
+        <script src='../js/FrupalModel.js'></script>
 <script>
-localStorage.setItem('mapname', 'Sample Frupal Game Map');
-localStorage.setItem('mapsize', '25');
-localStorage.setItem('char', '12,12');
-localStorage.setItem('stat1', '103');
-localStorage.setItem('stat2', '1000');
-localStorage.setItem('stat3', 'Axe');
-localStorage.setItem('stat4', 'Axe');
-localStorage.setItem('stat5', 'Shears');
-localStorage.setItem('stat6', 'Pretty Rock');
-localStorage.setItem('loc-12,12', '1,1');
-localStorage.setItem('loc-13,12', '0,1');
-localStorage.setItem('loc-14,12', '0,2');
-</script>
+    function buildModel() {
+        var model = new FrupalModel;
+        model.mapmodel.name = 'Sample Frupal Game Map';
+        model.mapmodel.mapSize = 25;
+
+        model.charModel = new CharModel(12,12, 103, 1000);
+        model.charModel.inventory.push('Axe');
+        model.charModel.inventory.push('Axe');
+        model.charModel.inventory.push('Shears');
+        model.charModel.inventory.push('Pretty Rock');
+        model.mapmodel.addTile(12,12,1,1,'None');
+        model.mapmodel.addTile(13,12,0,1,'Tree');
+        model.mapmodel.addTile(14,12,0,2,'None');
+        localStorage.clear();
+        localStorage.setItem('map', JSON.stringify(model));
+    }
+    buildModel();
+</script></head>
+<body></body></html>
