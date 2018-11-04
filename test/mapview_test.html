@@ -9,22 +9,19 @@
 <script src="../js/CharModel.js"></script>
 <script src="../js/CharStatusView.js"></script>
 <script src="../js/Controller.js"></script>
+<script src="../js/FrupalModel.js"></script>
 <script>
 
-let controller = new Controller( new CharModel( 5, 5, 200, 1000), new mapModel( 20 ), new MessageModel("You are in a meadow") );
-
 function loadMap(){
-    var mapdiv = document.getElementById("map");
-    for( let i = 0; i < 4; i++ ){
-        for( let j=0; j < 4; j++ ){
-            controller.mapmodel.addTile(Forest, i, j, 0, '');
-        }
-    }
-    controller.mapmodel.addTile(Meadow, 5, 5, 1, '');
-	controller.mapmodel.royalDiamondsX = 10;
-	controller.mapmodel.royalDiamondsY = 18;
+    var modelJSON = localStorage.getItem("map");
+    var fmodel= new FrupalModel();
+    return Object.assign( JSON.parse(modelJSON),fmodel );
 }
-loadMap();
+
+var model = loadMap();
+
+let controller = new Controller( model.charModel, model.mapModel, new MessageModel("Start the game") );
+
 
 function north(){
   controller.moveNorth();
