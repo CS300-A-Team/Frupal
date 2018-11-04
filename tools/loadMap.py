@@ -72,11 +72,11 @@ def main():
     print( "<html><head>")
     print( "<script src='../js/mapModel.js'></script>\n\
            <script src='../js/CharModel.js''></script>\n\
-           <script src='../js/Tile.js'></script>\n\
-           <script src='../js/FrupalModel.js'></script>")
+           <script src='../js/Tile.js'></script>")
     print( "<script>" )
     print( "function buildModel() {" ) 
-    print( "  var model = new FrupalModel();" ) 
+    print( "  var mapmodel = new mapModel();" )
+    print( "  var charmodel = new CharModel()")
     for mapLine in mapFile:
         line = mapLine.rstrip()
         if line == "######################":

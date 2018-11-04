@@ -1,5 +1,5 @@
 class Tile {
-    constructor(Ter, X, Y, Visit, item){
+    constructor(X, Y, Ter, Visit, item){
         this.Terrain = Ter;
         this.xLoc = X;
         this.yLoc = Y;

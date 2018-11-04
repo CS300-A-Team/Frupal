@@ -12,15 +12,14 @@
 <script src="../js/FrupalModel.js"></script>
 <script>
 
-function loadMap(){
-    var modelJSON = localStorage.getItem("map");
-    var fmodel= new FrupalModel();
-    return Object.assign( JSON.parse(modelJSON),fmodel );
-}
+    function loadMap(){
+        var modelJSON = localStorage.getItem("map");
+        return new FrupalModel(JSON.parse(modelJSON));
+    }
 
 var model = loadMap();
 
-let controller = new Controller( model.charModel, model.mapModel, new MessageModel("Start the game") );
+let controller = new Controller( model.charModel, model.mapmodel, new MessageModel("Start the game") );
 
 
 function north(){

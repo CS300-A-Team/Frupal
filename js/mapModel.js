@@ -1,10 +1,10 @@
 class mapModel{
 
     //THe parameters of the constructor can (and likely will) be changed
-    constructor(name, size){
+    constructor(){
         this.mapHash = new Object();
-        this.name = name;
-        this.mapSize = size;
+        this.name = '';
+        this.mapSize = 0;
         // The royalDiamonds have strange requirements about them. The relevant user
         // story specifically describes them as having "coordinates", and not being
         // like another item. The map file Warren supplied doesn't include royal 
@@ -15,15 +15,15 @@ class mapModel{
         this.royalDiamondsY = 2;
     }
 
-    addTile(Ter, X, Y, Visit, Item){
+    addTile(X, Y, Ter, Visit, Item){
        if(this.mapHash[X+','+Y] === undefined) {
-            this.mapHash[X + ',' + Y] = new Tile(Ter, X, Y, Visit, Item);
+            this.mapHash[X + ',' + Y] = new Tile(X, Y, Ter, Visit, Item);
         }else{
-            this.modTile(Ter, X, Y, Visit, Item);
+            this.modTile(X, Y, Ter, Visit, Item);
         }
     }
 
-    modTile(Ter, X, Y, Visit, Item){
+    modTile(X, Y, Ter, Visit, Item){
         this.mapHash[X+','+Y].xLoc = X;
         this.mapHash[X+','+Y].yLoc = Y;
         this.mapHash[X+','+Y].Terrain = Ter;
@@ -32,24 +32,17 @@ class mapModel{
     }
 
     getTile(X, Y){
+        if( this.mapHash[X+','+Y] === undefined ) {
+            this.initTileMeadow(X,Y);
+        }
         return this.mapHash[X+','+Y];
     }
 
-    //Setter and Getter for mapSize
-    set mapSize(newSize){
-        this._mapSize = newSize;
-    }
-    get mapSize(){
-        return this._mapSize;
-    }
     initTileMeadow(x, y){
-        let tile = this.getTile(x, y);
-        if(tile == null || tile === undefined){
-            this.addTile(Meadow, x, y, 1, '');          //if tile is not exist, add a meadow tile.
-        }
+        this.addTile(x, y, Meadow, 1, '');
     }
     setVisible(heroX, heroY){
-        this.mapHash[heroX+','+heroY].Visited = 1; // 1 is visible
+        this.getTile(heroX, heroY).Visited = 1; // 1 is visible
         //REVEALS TILE TO THE RIGHT
         if(heroX + 1 < this.mapSize){
             this.initTileMeadow(heroX + 1, heroY);
