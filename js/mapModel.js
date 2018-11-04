@@ -1,8 +1,9 @@
 class mapModel{
 
     //THe parameters of the constructor can (and likely will) be changed
-    constructor(size){
+    constructor(name, size){
         this.mapHash = new Object();
+        this.name = name;
         this.mapSize = size;
         // The royalDiamonds have strange requirements about them. The relevant user
         // story specifically describes them as having "coordinates", and not being
