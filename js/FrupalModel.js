@@ -5,7 +5,20 @@ class FrupalModel{
         this.charModel = new CharModel;
         if( obj === undefined )
             return;
-        this.mapmodel.mapHash = obj.mapmodel.mapHash;
+        // Handle Map hash specially
+        var mapHash = Object();
+        var objHash = obj.mapmodel.mapHash;
+        for( var key in objHash ){
+            var tile = new Tile(objHash[key].xLoc,
+                                objHash[key].yLoc,
+                                objHash[key].Visited,
+                                objHash[key].Terrain,
+                                objHash[key].Item);
+
+
+            mapHash[key] = tile;
+        }
+        this.mapmodel.mapHash = mapHash;
         this.mapmodel.name = obj.mapmodel.name;
         this.mapmodel.mapSize = obj.mapmodel.mapSize;
         this.mapmodel._mapSize = obj.mapmodel.mapSize;

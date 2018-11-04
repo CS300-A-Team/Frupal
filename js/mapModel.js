@@ -15,15 +15,15 @@ class mapModel{
         this.royalDiamondsY = 2;
     }
 
-    addTile(X, Y, Ter, Visit, Item){
+    addTile(X, Y, Visit, Ter, Item){
        if(this.mapHash[X+','+Y] === undefined) {
-            this.mapHash[X + ',' + Y] = new Tile(X, Y, Ter, Visit, Item);
+            this.mapHash[X + ',' + Y] = new Tile(X, Y, Visit, Ter, Item);
         }else{
-            this.modTile(X, Y, Ter, Visit, Item);
+            this.modTile(X, Y, Visit, Ter, Item);
         }
     }
 
-    modTile(X, Y, Ter, Visit, Item){
+    modTile(X, Y, Visit, Ter, Item){
         this.mapHash[X+','+Y].xLoc = X;
         this.mapHash[X+','+Y].yLoc = Y;
         this.mapHash[X+','+Y].Terrain = Ter;
@@ -39,119 +39,95 @@ class mapModel{
     }
 
     initTileMeadow(x, y){
-        this.addTile(x, y, Meadow, 1, '');
+        this.addTile(x, y, 0, Meadow, '');
     }
     setVisible(heroX, heroY){
         this.getTile(heroX, heroY).Visited = 1; // 1 is visible
         //REVEALS TILE TO THE RIGHT
         if(heroX + 1 < this.mapSize){
-            this.initTileMeadow(heroX + 1, heroY);
-            this.mapHash[(heroX + 1)+','+heroY].Visited = 1;
+            this.getTile(heroX + 1, heroY).Visited = 1;
             //WRAPS RIGHT TILE IF HERO IS ON FAR RIGHT EDGE OF MAP
         }else if(heroX + 1 >= this.mapSize){
-            this.initTileMeadow(0, heroY);
-            this.mapHash[0+','+heroY].Visited = 1;
+            this.getTile(0, heroY);
         }
         //REVEALS TILE TO LEFT OF HERO
         if(heroX - 1 >= 0){
-            this.initTileMeadow(heroX - 1, heroY);
-            this.mapHash[(heroX - 1)+','+heroY].Visited = 1;
+            this.getTile(heroX - 1, heroY).Visited = 1;
             //WRAPS LEFT TILE IF HERO IS ON FAR LEFT EDGE OF MAP
         }else if(heroX -1 < 0){
-            this.initTileMeadow(this.mapSize - 1, heroY);
-            this.mapHash[(this.mapSize -1)+','+heroY].Visited = 1;
+            this.getTile(this.mapSize - 1, heroY).Visited = 1;
         }
         //REVEALS TILE ABOVE HERO
         if(heroY + 1 < this.mapSize){
-            this.initTileMeadow(heroX, heroY + 1);
-            this.mapHash[heroX+','+(heroY + 1)].Visited = 1;
+            this.getTile(heroX, heroY + 1).Visited = 1;
             //WRAPS TILE ABOVE HERO TO THE BOTTOM IF HERO IS ON TOP EDGE OF MAP
         }else if(heroY + 1 >= this.mapSize){
-            this.initTileMeadow(heroX, 0);
-            this.mapHash[heroX+','+0].Visited = 1;
+            this.getTile(heroX, 0).Visited = 1;
         }
         //REVEALS TILE BELOW HERO
         if(heroY - 1 >= 0){
-            this.initTileMeadow(heroX, heroY - 1);
-            this.mapHash[heroX+','+(heroY - 1)].Visited = 1;
+            this.getTile(heroX, heroY - 1).Visited = 1;
             //WRAPS TILE BELOW HERO TO THE TOP IF THE HERO IS ON THE BOTTOM EDGE OF THE MAP
         }else if(heroY - 1 < 0){
-            this.initTileMeadow(heroX, this.mapSize -1);
-            this.mapHash[heroX+','+(this.mapSize -1)].Visited = 1;
+            this.getTile(heroX, this.mapSize -1).Visited = 1;
         }
         //REVEALS TILE TO THE TOP RIGHT OF HERO
         if(heroX + 1 < this.mapSize && heroY + 1 < this.mapSize){
-            this.initTileMeadow(heroX + 1, heroY + 1);
-            this.mapHash[(heroX + 1)+','+(heroY + 1)].Visited = 1;
+            this.getTile(heroX + 1, heroY + 1).Visited = 1;
             //REVEALS 0,0 IF HERO IS IN TOP RIGHT CORNER OF MAP
         }else if(heroX + 1 >= this.mapSize && heroY + 1 >= this.mapSize){
-            this.initTileMeadow(0 ,0);
-            this.mapHash[0+','+0].Visited = 1;
+            this.getTile(0 ,0).Visited = 1;
             //WRAPS TILE TO BOTTOM
         }else if(heroX + 1 < this.mapSize && heroY + 1 >= this.mapSize){
-            this.initTileMeadow(heroX + 1, 0);
-            this.mapHash[(heroX + 1) + ',' + 0].Visited = 1;
+            this.getTile(heroX + 1, 0).Visited = 1;
             //WRAPS TILE TO OTHER SIDE
         }else if(heroX + 1 >= this.mapSize && heroY + 1 < this.mapSize){
-            this.initTileMeadow(0, heroY +1);
-            this.mapHash[0+','+(heroY +1)].Visited = 1;
+            this.getTile(0, heroY +1).Visited = 1;
         }
 
         //REVEALS TILE TO THE TOP LEFT OF HERO
         if(heroX - 1 >= 0 && heroY + 1 < this.mapSize){
-            this.initTileMeadow(heroX - 1, heroY + 1);
-            this.mapHash[(heroX - 1)+','+(heroY + 1)].Visited = 1;
+            this.getTile(heroX - 1, heroY + 1).Visited = 1;
             //REVEALS mapSize - 1, 0 IF HERO IS IN TOP LEFT CORNER
         }else if(heroX - 1 < 0 && heroY + 1 >= this.mapSize){
-            this.initTileMeadow(this.mapSize -1, 0);
-            this.mapHash[(this.mapSize -1)+','+0].Visited = 1;
+            this.getTile(this.mapSize -1, 0).Visited = 1;
             //WRAPS TILE TO BOTTOM
         }else if(heroX - 1 > 0 && heroY + 1 >= this.mapSize){
-            this.initTileMeadow(heroX - 1, 0);
-            this.mapHash[(heroX -1)+','+ 0].Visited = 1;
+            this.getTile(heroX - 1, 0).Visited = 1;
             //WRAPS TILE TO OTHER SIDE
         }else if(heroX -1 < 0 && heroY + 1 < this.mapSize){
-            this.initTileMeadow(this.mapSize -1, heroY + 1);
-            this.mapHash[(this.mapSize -1)+','+(heroY + 1)].Visited = 1;
+            this.getTile(this.mapSize -1, heroY + 1).Visited = 1;
         }
 
 
         //REVEALS TILE TO BOTTOM RIGHT OF HERO
         if(heroX + 1 < this.mapSize && heroY - 1 >= 0){
-            this.initTileMeadow(heroX + 1, heroY - 1);
-            this.mapHash[(heroX + 1)+','+(heroY - 1)].Visited = 1;
+            this.getTile(heroX + 1, heroY - 1).Visited = 1;
             //REVEALS 0,mapSize -1 IF THE HERO IS IN THE BOTTOM RIGHT CORNER
         }else if(heroX + 1 >= this.mapSize && heroY - 1 < 0){
-            this.initTileMeadow(0, this.mapSize -1);
-            this.mapHash[0+','+(this.mapSize - 1)].Visited = 1;
+            this.getTile(0, this.mapSize -1).Visited = 1;
             //WRAPS TILE TO TOP
         }else if(heroX + 1 < this.mapSize && heroY - 1 < 0){
-            this.initTileMeadow(heroX + 1, this.mapSize -1);
-            this.mapHash[(heroX + 1)+','+(this.mapSize -1)].Visited = 1;
+            this.getTile(heroX + 1, this.mapSize -1).Visited = 1;
             //WRAPS TILE TO OTHER SIDE
         }else if(heroX + 1 >= this.mapSize && heroY - 1 >= 0){
-            this.initTileMeadow(0 , heroY -1);
-            this.mapHash[0+','+(heroY -1)].Visited = 1;
+            this.getTile(0 , heroY -1).Visited = 1;
         }
 
 
 
         //REVEALS TILE TO BOTTOM LEFT OF HERO
         if(heroX -1 >= 0 && heroY - 1 >= 0){
-            this.initTileMeadow(heroX - 1, heroY - 1);
-            this.mapHash[(heroX - 1)+','+(heroY - 1)].Visited = 1;
+            this.getTile(heroX - 1, heroY - 1).Visited = 1;
             //REVEALS TOP RIGHT CORNER IF HERO IS IN BOTTOM LEFT CORNER
         }else if(heroX -1 < 0 && heroY - 1 < 0){
-            this.initTileMeadow(this.mapSize - 1, this.mapSize - 1);
-            this.mapHash[(this.mapSize -1)+','+(this.mapSize-1)].Visited = 1;
+            this.getTile(this.mapSize - 1, this.mapSize - 1).Visited = 1;
             //WRAPS TILE TO TOP
         }else if(heroX - 1 > 0 && heroY - 1 < 0){
-            this.initTileMeadow(heroX - 1, this.mapSize -1);
-            this.mapHash[(heroX - 1)+','+(this.mapSize - 1)].Visited = 1;
+            this.getTile(heroX - 1, this.mapSize -1).Visited = 1;
             //WRAPS TILE TO OTHER SIDE
         }else if(heroX - 1 < 0 && heroY - 1 >= 0){
-            this.initTileMeadow(this.mapSize -1, heroY -1);
-            this.mapHash[(this.mapSize - 1)+','+(heroY -1)].Visited = 1;
+            this.getTile(this.mapSize -1, heroY -1).Visited = 1;
         }
     }
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
@@ -189,13 +165,6 @@ class mapModel{
                 x = 0;
             }
         }
-
-
-        var tile =  this.mapHash[x+','+y];
-        if( tile == null ) {
-            this.initTileMeadow(x, y);
-            tile = this.mapHash[x+','+y];
-     }
-     return tile;
+     return this.getTile(x,y);
     }
 }
