@@ -54,7 +54,7 @@ class mapModel{
             this.getTile(heroX + 1, heroY).Visited = 1;
             //WRAPS RIGHT TILE IF HERO IS ON FAR RIGHT EDGE OF MAP
         }else if(heroX + 1 >= this.mapSize){
-            this.getTile(0, heroY);
+            this.getTile(0, heroY).Visited = 1;
         }
         //REVEALS TILE TO LEFT OF HERO
         if(heroX - 1 >= 0){
