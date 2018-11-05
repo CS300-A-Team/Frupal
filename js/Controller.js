@@ -37,6 +37,31 @@ class Controller{
         var y = this.charmodel.y;
         var tile = this.mapmodel.getDirection( Dir, x, y );
 
+        switch(tile.Terrain) {
+            case Meadow:
+                this.messagemodel.message = "You are in the " + "Meadow";
+                break;
+            case Forest:
+                this.messagemodel.message = "You are in the " + "Forest";
+                break;
+            case Water:
+                this.messagemodel.message = "You are in the " + "Water";
+                break;
+            case Wall:
+                this.messagemodel.message = "You are in the " + "Wall";
+                break;
+            case Bog:
+                this.messagemodel.message = "You are in the " + "Bog";
+                break;
+            case Swamp:
+                this.messagemodel.message = "You are in the " + "Swamp";
+                break;
+            default:
+                this.messagemodel.message = "You are in the unknown tile";
+                break;
+        }
+
+
         // Check the tile
         // If cannot move into tile then penalize
         // else move into tile
