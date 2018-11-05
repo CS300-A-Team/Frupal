@@ -55,6 +55,20 @@
         function west() {
             controller.moveWest();
         }
+
+        // Install keyboard handler for arrow keys
+        $(window).keypress(function(event) {
+            if (event.key === "ArrowUp" || event.key === 'w' || event.key === 'W') {
+                north();
+            } else if (event.key === "ArrowRight" || event.key === 'd' || event.key === 'D') {
+                east();
+            } else if (event.key === "ArrowDown" || event.key === 's' || event.key === 'S') {
+                south();
+            } else if (event.key === "ArrowLeft" || event.key === 'a' || event.key === 'A') {
+                west();
+            }
+        })
+
     </script>
 </head>
 <body style="font-family:Verdana;color:#000000;">
