@@ -51,6 +51,15 @@ def loadMap( line ):
     print( "        model.mapmodel.addTile(" + tile + ");" );
     return
 
+	
+#  Function for checking Map
+def chkMap( line, mSize ):
+    # Store map lines
+    l = line.split(",")
+    if(int(l[0]) > mSize or int(l[1]) > mSize):
+        return True;		
+    return False;
+	
 
 #### Main Function ####
 def main():
@@ -76,8 +85,37 @@ def main():
         <script src='../js/Tile.js'></script>\n\
         <script src='../js/FrupalModel.js'></script>")
     print( "<script>" )
+	
+    print( "    function chkCorruptFile() {" )
+    lineCnt = 0
+    outCellCnt = 0
+    diamondCnt = 0
+    for mapLine in mapFile:
+        line = mapLine.rstrip()
+        lineCnt = lineCnt + 1
+        if line == "######################":
+            state = state + 1
+        else:
+            if state == 0:
+                if lineCnt == 2:
+                    mapSize = line
+            elif state == 2:
+                if "Royal Diamonds" in line:
+                    diamondCnt = diamondCnt +1
+                corrupt = chkMap(line, int(mapSize))
+                if corrupt:
+                    outCellCnt = outCellCnt +1
+	
+    if diamondCnt == 0 or outCellCnt > 0:
+        print("        return -1")
+    else:
+        print("        return 1")
+    print( "    }" )
+	
     print( "    function buildModel() {" )
     print( "        var model = new FrupalModel;" )
+    mapFile.seek(0)
+    state = 0
     for mapLine in mapFile:
         line = mapLine.rstrip()
         if line == "######################":
@@ -88,7 +126,12 @@ def main():
     print( "        localStorage.clear();")
     print( "        localStorage.setItem('map', JSON.stringify(model));" )
     print( "    }" )
-    print( "    buildModel();")
+    print( "    var chkCorr = chkCorruptFile();")
+    print( "    if(eval(chkCorr) == -1) {")
+    print( "        alert('Your map file has corrupted contents');")
+    print( "    } else if(eval(chkCorr) == 1) {")
+    print( "        buildModel();")
+    print( "    }")	
     print( "</script></head>")
     print( "<body></body></html>")
 
