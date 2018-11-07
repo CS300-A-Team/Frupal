@@ -64,17 +64,37 @@ table {
     border: 2px solid #181818;
 }
 
-#mapView tr td {
+.mapTile {
     width: 24px;
     height: 24px;
 }
 
-#mapView tr:nth-child(2n) td:nth-child(2n+1) {
-    background: #9f9f9f;
+.meadow {
+    background: chartreuse;
 }
 
-#mapView tr:nth-child(2n+1) td:nth-child(2n) {
-    background: #9f9f9f;
+.forest {
+    background: darkgreen;
+}
+
+.water {
+    background: cornflowerblue;
+}
+
+.wall {
+    background: #888888;
+}
+
+.bog {
+    background: darkolivegreen;
+}
+
+.swamp {
+    background: darkgoldenrod;
+}
+
+.unknown {
+    background: gray;
 }
 
 .container {

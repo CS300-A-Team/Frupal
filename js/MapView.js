@@ -42,35 +42,30 @@ class MapView{
             // Set the corresponding tile to what it is
             var cell = document.getElementById(key);
             if( tileHash[key].Visited ){
+                cell.innerHTML = "";
                 // Get the Terrain
                 switch(tileHash[key].Terrain){
                     case Meadow:
-                        cell.innerHTML = "M";
-                        cell.className = "Meadow";
+                        cell.className = "mapTile meadow";
                         break;
                     case Forest:
-                        cell.innerHTML = "F";
-                        cell.className = "Forest";
+                        cell.className = "mapTile forest";
                         break;
                     case Water:
-                        cell.innerHTML = "W";
-                        cell.className = "Water";
+                        cell.className = "mapTile water";
                         break;
                     case Wall:
-                        cell.innerHTML = "W";
-                        cell.className = "Wall";
+                        cell.className = "mapTile wall";
                         break;
                     case Bog:
-                        cell.innerHTML = "B";
-                        cell.className = "Bog";
+                        cell.className = "mapTile bog";
                         break;
                     case Swamp:
-                        cell.innerHTML = "S";
-                        cell.className = "Swamp";
+                        cell.className = "mapTile swamp";
                         break;
                     default:
                         cell.innerHTML = "?";
-                        cell.className = "unknown";
+                        cell.className = "mapTile unknown";
                         break;
                 }
 
