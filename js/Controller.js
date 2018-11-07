@@ -27,17 +27,9 @@ class Controller{
 
     // Actual Move call logic
     // Game logic goes here
-    move( Dir ){
-    	if (this.charmodel.hasFoundRoyalDiamonds || this.charmodel.isDead()){
-    		return;	// Don't let players move after winning/dying
-    	}
-    
-        // Get current location
-        var x = this.charmodel.x;
-        var y = this.charmodel.y;
-        var tile = this.mapmodel.getDirection( Dir, x, y );
 
-        switch(tile.Terrain) {
+    updateTileMessage(terrain) {
+        switch(terrain) {
             case Meadow:
                 this.messagemodel.message = "You are in the " + "Meadow";
                 break;
@@ -60,7 +52,18 @@ class Controller{
                 this.messagemodel.message = "You are in the unknown tile";
                 break;
         }
+    }
 
+    move( Dir ){
+    	if (this.charmodel.hasFoundRoyalDiamonds || this.charmodel.isDead()){
+    		return;	// Don't let players move after winning/dying
+    	}
+    
+        // Get current location
+        var x = this.charmodel.x;
+        var y = this.charmodel.y;
+
+        var tile = this.mapmodel.getDirection( Dir, x, y );
 
         // Check the tile
         // If cannot move into tile then penalize
@@ -68,7 +71,8 @@ class Controller{
         if(tile.Terrain !== Water){  //I believe Water is the only impassable terrain as of now - Josh
             this.charmodel.move(tile.xLoc, tile.yLoc, 1); //Set the default to 1 energy spent
             //reveal tiles around player
-            this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y)
+            this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y);
+            this.updateTileMessage(tile.Terrain);
         }
 
         // Handle the win and lose conditions
