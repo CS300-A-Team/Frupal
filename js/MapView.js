@@ -19,7 +19,7 @@ class MapView{
             for( let x = 0; x < this.model.mapSize; x++ ){
                 var cell = document.createElement("td");
                     cell.id = x+','+y;
-                    cell.className = "blank";
+                    cell.className = "mapTile";
                 row.appendChild(cell);
             }
         }
