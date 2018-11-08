@@ -47,95 +47,29 @@ class mapModel{
     initTileMeadow(x, y){
         this.addTile(x, y, 0, Meadow, '');
     }
-    setVisible(heroX, heroY){
-        this.getTile(heroX, heroY).Visited = 1; // 1 is visible
-        //REVEALS TILE TO THE RIGHT
-        if(heroX + 1 < this.mapSize){
-            this.getTile(heroX + 1, heroY).Visited = 1;
-            //WRAPS RIGHT TILE IF HERO IS ON FAR RIGHT EDGE OF MAP
-        }else if(heroX + 1 >= this.mapSize){
-            this.getTile(0, heroY).Visited = 1;
-        }
-        //REVEALS TILE TO LEFT OF HERO
-        if(heroX - 1 >= 0){
-            this.getTile(heroX - 1, heroY).Visited = 1;
-            //WRAPS LEFT TILE IF HERO IS ON FAR LEFT EDGE OF MAP
-        }else if(heroX -1 < 0){
-            this.getTile(this.mapSize - 1, heroY).Visited = 1;
-        }
-        //REVEALS TILE ABOVE HERO
-        if(heroY + 1 < this.mapSize){
-            this.getTile(heroX, heroY + 1).Visited = 1;
-            //WRAPS TILE ABOVE HERO TO THE BOTTOM IF HERO IS ON TOP EDGE OF MAP
-        }else if(heroY + 1 >= this.mapSize){
-            this.getTile(heroX, 0).Visited = 1;
-        }
-        //REVEALS TILE BELOW HERO
-        if(heroY - 1 >= 0){
-            this.getTile(heroX, heroY - 1).Visited = 1;
-            //WRAPS TILE BELOW HERO TO THE TOP IF THE HERO IS ON THE BOTTOM EDGE OF THE MAP
-        }else if(heroY - 1 < 0){
-            this.getTile(heroX, this.mapSize -1).Visited = 1;
-        }
-        //REVEALS TILE TO THE TOP RIGHT OF HERO
-        if(heroX + 1 < this.mapSize && heroY + 1 < this.mapSize){
-            this.getTile(heroX + 1, heroY + 1).Visited = 1;
-            //REVEALS 0,0 IF HERO IS IN TOP RIGHT CORNER OF MAP
-        }else if(heroX + 1 >= this.mapSize && heroY + 1 >= this.mapSize){
-            this.getTile(0 ,0).Visited = 1;
-            //WRAPS TILE TO BOTTOM
-        }else if(heroX + 1 < this.mapSize && heroY + 1 >= this.mapSize){
-            this.getTile(heroX + 1, 0).Visited = 1;
-            //WRAPS TILE TO OTHER SIDE
-        }else if(heroX + 1 >= this.mapSize && heroY + 1 < this.mapSize){
-            this.getTile(0, heroY +1).Visited = 1;
-        }
 
-        //REVEALS TILE TO THE TOP LEFT OF HERO
-        if(heroX - 1 >= 0 && heroY + 1 < this.mapSize){
-            this.getTile(heroX - 1, heroY + 1).Visited = 1;
-            //REVEALS mapSize - 1, 0 IF HERO IS IN TOP LEFT CORNER
-        }else if(heroX - 1 < 0 && heroY + 1 >= this.mapSize){
-            this.getTile(this.mapSize -1, 0).Visited = 1;
-            //WRAPS TILE TO BOTTOM
-        }else if(heroX - 1 > 0 && heroY + 1 >= this.mapSize){
-            this.getTile(heroX - 1, 0).Visited = 1;
-            //WRAPS TILE TO OTHER SIDE
-        }else if(heroX -1 < 0 && heroY + 1 < this.mapSize){
-            this.getTile(this.mapSize -1, heroY + 1).Visited = 1;
-        }
-
-
-        //REVEALS TILE TO BOTTOM RIGHT OF HERO
-        if(heroX + 1 < this.mapSize && heroY - 1 >= 0){
-            this.getTile(heroX + 1, heroY - 1).Visited = 1;
-            //REVEALS 0,mapSize -1 IF THE HERO IS IN THE BOTTOM RIGHT CORNER
-        }else if(heroX + 1 >= this.mapSize && heroY - 1 < 0){
-            this.getTile(0, this.mapSize -1).Visited = 1;
-            //WRAPS TILE TO TOP
-        }else if(heroX + 1 < this.mapSize && heroY - 1 < 0){
-            this.getTile(heroX + 1, this.mapSize -1).Visited = 1;
-            //WRAPS TILE TO OTHER SIDE
-        }else if(heroX + 1 >= this.mapSize && heroY - 1 >= 0){
-            this.getTile(0 , heroY -1).Visited = 1;
-        }
-
-
-
-        //REVEALS TILE TO BOTTOM LEFT OF HERO
-        if(heroX -1 >= 0 && heroY - 1 >= 0){
-            this.getTile(heroX - 1, heroY - 1).Visited = 1;
-            //REVEALS TOP RIGHT CORNER IF HERO IS IN BOTTOM LEFT CORNER
-        }else if(heroX -1 < 0 && heroY - 1 < 0){
-            this.getTile(this.mapSize - 1, this.mapSize - 1).Visited = 1;
-            //WRAPS TILE TO TOP
-        }else if(heroX - 1 > 0 && heroY - 1 < 0){
-            this.getTile(heroX - 1, this.mapSize -1).Visited = 1;
-            //WRAPS TILE TO OTHER SIDE
-        }else if(heroX - 1 < 0 && heroY - 1 >= 0){
-            this.getTile(this.mapSize -1, heroY -1).Visited = 1;
+    // function that wraps a coordinate around the edges of the map, both when too high or too low
+    wrap(coordinate) {
+        if (coordinate < 0) {
+            return coordinate + this.mapSize;
+        } else if (coordinate >= this.mapSize) {
+            return coordinate - this.mapSize;
+        } else {
+            return coordinate;
         }
     }
+
+    setVisible(heroX, heroY){
+        // Sight range is currently always 1, but binoculars could give us a bigger sight range
+        const sightRange = 1;
+        // Set every tile within sight range of the hero to Visited (visible).
+        for (let i = heroX - sightRange; i <= heroX + sightRange; i ++) {
+            for (let j = heroY - sightRange; j <= heroY + sightRange; j ++) {
+                this.getTile(this.wrap(i), this.wrap(j)).Visited = 1;
+            }
+        }
+    }
+
     //Should handle wrapping around the world.  X,Y being passed in should be the charModel location at the time
     getDirection(Dir, X, Y){
         var x = X;
@@ -143,34 +77,19 @@ class mapModel{
         switch (Dir){
             case "N":
             y = Y + 1;
-            if(y > (this.mapSize - 1)){
-              y = 0;
-            }
             break;
-
 
             case "S":
             y = Y - 1;
-            if(y < 0){
-                y = this.mapSize - 1;
-            }
             break;
-
 
             case "W":
             x= X - 1;
-            if(x < 0){
-                x = this.mapSize - 1;
-            }
             break;
-
 
             case "E":
             x = X + 1;
-            if(x > (this.mapSize - 1)){
-                x = 0;
-            }
         }
-     return this.getTile(x,y);
+        return this.getTile(this.wrap(x), this.wrap(y));
     }
 }
