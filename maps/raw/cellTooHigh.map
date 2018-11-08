@@ -1,0 +1,17 @@
+A map with a cell where x=26, one too low for the map
+25
+######################
+12,12
+103
+1000
+Axe
+Axe
+Shears
+Pretty Rock
+######################
+12,12,1,1,None
+13,12,0,1,Tree
+14,12,0,2,None
+12,13,0,1,None
+12,14,0,0,Royal Diamonds
+26,14,0,0,None

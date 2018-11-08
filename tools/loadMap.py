@@ -56,7 +56,7 @@ def loadMap( line ):
 def chkMap( line, mSize ):
     # Store map lines
     l = line.split(",")
-    if(int(l[0]) > mSize or int(l[1]) > mSize):
+    if(int(l[0]) >= mSize or int(l[0]) < 0 or int(l[1]) >= mSize or int(l[1]) < 0):
         return True;		
     return False;
 	
