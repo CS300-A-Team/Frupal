@@ -119,6 +119,11 @@ class Controller{
         this.drawGame();
     }
 
+    toggleInventory(){
+        this.charStatusView.showInv = !this.charStatusView.showInv;
+        this.charStatusView.drawInv();
+    }
+
     saveModelToLocalStorage(){
         // Create a temporary FrupalModel object with a copy of our models' data
         let frupalModel = new FrupalModel();

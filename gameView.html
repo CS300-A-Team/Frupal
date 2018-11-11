@@ -57,6 +57,10 @@
             controller.moveWest();
         }
 
+        function toggleInventory(){
+            controller.toggleInventory();
+        }
+
         // Install keyboard handler for arrow keys
         $(window).keydown(function(event) {
             if (event.keyCode === 38 || event.key === 'w' || event.key === ',') {	//"ArrowUp"
@@ -92,6 +96,7 @@
         <div>Energy: <span id="energy"> </span></div>
         <div>Whiffles: <span id="whiffles"> </span></div>
         <div>Current Location: <span id="location"> </span></div>
+        <div id="inventory"></div>
     </div>
 
 
@@ -111,6 +116,7 @@
                 </div>
                 <div class="form-row">
                     <input type="button" value="SOUTH" onClick="south()">
+                    <input type="button" value="INV" onClick="toggleInventory()"/>
                 </div>
             </form>
         </div>
