@@ -12,7 +12,7 @@
             model.mapmodel.name = 'Sample Frupal Game Map';
             model.mapmodel.mapSize = 30;
 
-            model.charModel = new CharModel(15,15, 125, 1000);
+            model.charModel = new CharModel(15,15, 125, 10);
             model.charModel.inventory.push('Axe');
             model.charModel.inventory.push('Axe');
             model.charModel.inventory.push('Shears');
@@ -27,14 +27,14 @@
             model.mapmodel.addTile(21,15,0,2,'None');
             model.mapmodel.addTile(22,15,0,2,'None');
             model.mapmodel.addTile(23,15,0,2,'None');
-            model.mapmodel.addTile(23,16,0,2,'None');
+            model.mapmodel.addTile(23,16,0,2,'PowerBar');
             model.mapmodel.addTile(23,17,0,2,'None');
             model.mapmodel.addTile(23,18,0,2,'None');
             model.mapmodel.addTile(23,19,0,2,'None');
             model.mapmodel.addTile(23,20,0,2,'None');
             model.mapmodel.addTile(24,20,0,2,'None');
             model.mapmodel.addTile(25,20,0,2,'None');
-            model.mapmodel.addTile(26,20,0,2,'None');
+            model.mapmodel.addTile(26,20,0,2,'PowerBar');
             model.mapmodel.addTile(27,20,0,2,'None');
             model.mapmodel.addTile(28,20,0,2,'None');
             model.mapmodel.addTile(28,21,0,2,'None');
@@ -56,7 +56,7 @@
             model.mapmodel.addTile(21,16,0,1,'None');
             model.mapmodel.addTile(22,16,0,1,'None');
             model.mapmodel.addTile(17,17,0,1,'None');
-            model.mapmodel.addTile(18,17,0,1,'None');
+            model.mapmodel.addTile(18,17,0,1,'PowerBar');
             model.mapmodel.addTile(19,17,0,1,'None');
             model.mapmodel.addTile(20,17,0,1,'None');
             model.mapmodel.addTile(21,17,0,1,'None');
@@ -80,7 +80,7 @@
             model.mapmodel.addTile(25,23,0,5,'None');
             model.mapmodel.addTile(26,23,0,5,'None');
             model.mapmodel.addTile(27,23,0,5,'None');
-            model.mapmodel.addTile(25,24,0,5,'None');
+            model.mapmodel.addTile(25,24,0,5,'PowerBar');
             model.mapmodel.addTile(27,24,0,5,'None');
             localStorage.clear();
             localStorage.setItem('map', JSON.stringify(model));

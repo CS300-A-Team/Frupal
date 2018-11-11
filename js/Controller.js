@@ -75,8 +75,7 @@ class Controller{
             this.updateTileMessage(tile.Terrain);
         }
 
-
-        this.encounterItem(tile.Item);
+        this.encounterItem();
 
         // Handle the win and lose conditions
         if (this.charmodel.x == this.mapmodel.royalDiamondsX && 
@@ -121,21 +120,23 @@ class Controller{
         localStorage.setItem("map", JSON.stringify(frupalModel));
     }
 
-    encounterItem(item){
+    encounterItem(){
+        var currentTile = this.mapmodel.getTile(this.charmodel.x, this.charmodel.y);       //Because sometimes the hero won't move.
+        var item = currentTile.Item;
         if(item === 'None'){
             return;
         }
         else if(item == 'PowerBar'){
             var choice = confirm("Here is ar power bar, do you want to buy it? " +
-                                 "you have " + this.charmodel.whiffles + " whiffles " + " and " + this.charmodel.energy + " energy " +
-                                 "the price of power bar is 1 whiffles and it will give you 20 energy points.");
+                                 "you have " + this.charmodel.whiffles + " whiffles " + " and " + this.charmodel.energy + " energy. " +
+                                 "\nThe price of power bar is 1 whiffles and it will give you 20 energy points.");
             if (choice === true) {
                 if (this.charmodel.whiffles < 1)
                     alert("Sorry! You don't have enough whiffles.")
                 else{
                     this.charmodel.whiffles  =  this.charmodel.whiffles - 1;
                     this.charmodel.energy = this.charmodel.energy + 20;
-                    this.removeItem(this.mapmodel.getTile(this.charmodel.x, this.charmodel.y));
+                    this.removeItem(currentTile);
                     alert("You purchased it.");
                     //this.charStatusView.redraw();
                     //this.mapView.redraw();
