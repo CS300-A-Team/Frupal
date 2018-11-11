@@ -1,0 +1,95 @@
+<html><head>
+    <script src='../js/mapModel.js'></script>
+    <script src='../js/CharModel.js'></script>
+    <script src='../js/Tile.js'></script>
+    <script src='../js/FrupalModel.js'></script>
+    <script>
+        function chkCorruptFile() {
+            return 1
+        }
+        function buildModel() {
+            var model = new FrupalModel;
+            model.mapmodel.name = 'Sample Frupal Game Map';
+            model.mapmodel.mapSize = 30;
+
+            model.charModel = new CharModel(15,15, 125, 1000);
+            model.charModel.inventory.push('Axe');
+            model.charModel.inventory.push('Axe');
+            model.charModel.inventory.push('Shears');
+            model.charModel.inventory.push('Pretty Rock');
+            model.mapmodel.addTile(15,15,1,1,'None');
+            model.mapmodel.addTile(26,24,0,0,'PowerBar');
+            model.mapmodel.addTile(16,15,0,2,'None');
+            model.mapmodel.addTile(17,15,0,2,'None');
+            model.mapmodel.addTile(18,15,0,2,'None');
+            model.mapmodel.addTile(19,15,0,2,'None');
+            model.mapmodel.addTile(20,15,0,2,'None');
+            model.mapmodel.addTile(21,15,0,2,'None');
+            model.mapmodel.addTile(22,15,0,2,'None');
+            model.mapmodel.addTile(23,15,0,2,'None');
+            model.mapmodel.addTile(23,16,0,2,'None');
+            model.mapmodel.addTile(23,17,0,2,'None');
+            model.mapmodel.addTile(23,18,0,2,'None');
+            model.mapmodel.addTile(23,19,0,2,'None');
+            model.mapmodel.addTile(23,20,0,2,'None');
+            model.mapmodel.addTile(24,20,0,2,'None');
+            model.mapmodel.addTile(25,20,0,2,'None');
+            model.mapmodel.addTile(26,20,0,2,'None');
+            model.mapmodel.addTile(27,20,0,2,'None');
+            model.mapmodel.addTile(28,20,0,2,'None');
+            model.mapmodel.addTile(28,21,0,2,'None');
+            model.mapmodel.addTile(28,22,0,2,'None');
+            model.mapmodel.addTile(28,23,0,2,'None');
+            model.mapmodel.addTile(28,24,0,2,'None');
+            model.mapmodel.addTile(28,25,0,2,'None');
+            model.mapmodel.addTile(18,18,0,2,'None');
+            model.mapmodel.addTile(19,19,0,2,'None');
+            model.mapmodel.addTile(20,20,0,2,'None');
+            model.mapmodel.addTile(21,21,0,2,'None');
+            model.mapmodel.addTile(22,22,0,2,'None');
+            model.mapmodel.addTile(23,23,0,2,'None');
+            model.mapmodel.addTile(24,24,0,2,'None');
+            model.mapmodel.addTile(17,16,0,1,'None');
+            model.mapmodel.addTile(18,16,0,1,'None');
+            model.mapmodel.addTile(19,16,0,1,'None');
+            model.mapmodel.addTile(20,16,0,1,'None');
+            model.mapmodel.addTile(21,16,0,1,'None');
+            model.mapmodel.addTile(22,16,0,1,'None');
+            model.mapmodel.addTile(17,17,0,1,'None');
+            model.mapmodel.addTile(18,17,0,1,'None');
+            model.mapmodel.addTile(19,17,0,1,'None');
+            model.mapmodel.addTile(20,17,0,1,'None');
+            model.mapmodel.addTile(21,17,0,1,'None');
+            model.mapmodel.addTile(22,17,0,1,'None');
+            model.mapmodel.addTile(23,21,0,4,'None');
+            model.mapmodel.addTile(24,21,0,4,'None');
+            model.mapmodel.addTile(25,21,0,4,'None');
+            model.mapmodel.addTile(26,21,0,4,'None');
+            model.mapmodel.addTile(27,21,0,4,'None');
+            model.mapmodel.addTile(23,22,0,4,'None');
+            model.mapmodel.addTile(24,22,0,4,'None');
+            model.mapmodel.addTile(25,22,0,4,'None');
+            model.mapmodel.addTile(26,22,0,4,'None');
+            model.mapmodel.addTile(27,22,0,4,'None');
+            model.mapmodel.addTile(25,23,0,5,'None');
+            model.mapmodel.addTile(26,23,0,5,'None');
+            model.mapmodel.addTile(27,23,0,5,'None');
+            model.mapmodel.addTile(25,25,0,5,'None');
+            model.mapmodel.addTile(26,25,0,5,'None');
+            model.mapmodel.addTile(27,25,0,5,'None');
+            model.mapmodel.addTile(25,23,0,5,'None');
+            model.mapmodel.addTile(26,23,0,5,'None');
+            model.mapmodel.addTile(27,23,0,5,'None');
+            model.mapmodel.addTile(25,24,0,5,'None');
+            model.mapmodel.addTile(27,24,0,5,'None');
+            localStorage.clear();
+            localStorage.setItem('map', JSON.stringify(model));
+        }
+        var chkCorr = chkCorruptFile();
+        if(eval(chkCorr) == -1) {
+            alert('Your map file has corrupted contents');
+        } else if(eval(chkCorr) == 1) {
+            buildModel();
+        }
+    </script></head>
+<body></body></html>

@@ -45,7 +45,7 @@ class mapModel{
     }
 
     initTileMeadow(x, y){
-        this.addTile(x, y, 0, Meadow, '');
+        this.addTile(x, y, 0, Meadow, 'None');
     }
 
     // function that wraps a coordinate around the edges of the map, both when too high or too low
