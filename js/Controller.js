@@ -128,13 +128,13 @@ class Controller{
         else if(item == 'PowerBar'){
             var choice = confirm("Here is ar power bar, do you want to buy it? " +
                                  "you have " + this.charmodel.whiffles + " whiffles " + " and " + this.charmodel.energy + " energy " +
-                                 "the price of power bar is 5 whiffles and it will give you 10 energy points.");
+                                 "the price of power bar is 1 whiffles and it will give you 20 energy points.");
             if (choice === true) {
-                if (this.charmodel.whiffles < 5)
+                if (this.charmodel.whiffles < 1)
                     alert("Sorry! You don't have enough whiffles.")
                 else{
-                    this.charmodel.whiffles  =  this.charmodel.whiffles - 5;
-                    this.charmodel.energy = this.charmodel.energy + 10;
+                    this.charmodel.whiffles  =  this.charmodel.whiffles - 1;
+                    this.charmodel.energy = this.charmodel.energy + 20;
                     this.removeItem(this.mapmodel.getTile(this.charmodel.x, this.charmodel.y));
                     alert("You purchased it.");
                     //this.charStatusView.redraw();
