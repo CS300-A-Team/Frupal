@@ -26,11 +26,30 @@ class CharStatusView {
             div.innerHTML = "";
             if( this.showInv ) {
                 let divtitle = document.createElement("div");
-                    divtitle.innerHTML = "<b>Inventory</b>";
+                    divtitle.innerHTML = "<span></span><span><b>Inventory</b></span><span></span>";
                     div.appendChild(divtitle);
+                    divtitle = document.createElement("div");
+                    let spantitle = document.createElement("span");
+                        spantitle.innerText = "Name";
+                    divtitle.appendChild(spantitle);
+                        spantitle = document.createElement("span");
+                        spantitle.innerText = "Worth";
+                    divtitle.appendChild(spantitle);
+                        spantitle = document.createElement("span");
+                        spantitle.innerText = "Quantity";
+                    divtitle.appendChild(spantitle);
+                div.appendChild(divtitle);
                 for (let item in this.charModel.inventory) {
                     let divinv = document.createElement("div");
-                    divinv.innerText = this.charModel.inventory[item];
+                    let span = document.createElement("span");
+                        span.innerText = this.charModel.inventory[item];
+                        divinv.appendChild(span);
+                        span = document.createElement("span");
+                        span.innerText = "$20";
+                        divinv.appendChild(span);
+                        span = document.createElement("span");
+                        span.innerText = "1";
+                        divinv.appendChild(span);
                     div.appendChild(divinv);
                 }
             }
