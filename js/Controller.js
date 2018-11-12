@@ -68,22 +68,25 @@ class Controller{
 
         var tile = this.mapmodel.getDirection( Dir, x, y );
 
-        // Check the tile
-        // If cannot move into tile then penalize
-        // else move into tile
-        if(tile.Terrain === Water){
-            this.charmodel.energy--;
-            this.messagemodel.message = "YIKES! You cannot move into the Water! You used 1 energy point anyway.";
-        }
-        else{
-            var EnergySpent = 1;
-            if(tile.Terrain === Bog || tile.Terrain === Forest){
-                EnergySpent = 2;
+        if(this.encounterObstacle(tile)) {
+            if(tile.Terrain === Water){
+                this.charmodel.energy--;
+                this.messagemodel.message = "YIKES! You cannot move into the Water! You used 1 energy point anyway.";
             }
-            this.charmodel.move(tile.xLoc, tile.yLoc, EnergySpent); //Set the default to 1 energy spent
-            //reveal tiles around player
-            this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
-            this.updateTileMessage(tile.Terrain, EnergySpent);
+            else{
+                var EnergySpent = 1;
+                if(tile.Terrain === Bog || tile.Terrain === Forest){
+                    EnergySpent = 2;
+                }
+                this.charmodel.move(tile.xLoc, tile.yLoc, EnergySpent); //Set the default to 1 energy spent
+                //reveal tiles around player
+                this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
+                this.updateTileMessage(tile.Terrain, EnergySpent);
+            }
+        }
+        else {
+            this.charmodel.energy--;
+            this.messagemodel.message = "You decided to go back and not touch the obstacle! You used 1 energy point.";
         }
 
         this.encounterItem();
@@ -186,6 +189,60 @@ class Controller{
             this.messagemodel.message = 'You found a Type 2 Treasure Chest and lost all of your whiffles!';
         }
         // other kinds of items
+    }
+
+    encounterObstacle(tile){
+        var item = tile.Item;
+        var check = false;
+        if(item === 'None'){
+            return true;
+        }
+        else if(item === 'Tree') {
+            check = confirm("This tile contains a tree. You cannot move into the " +
+                "tile without removing the tree. You will use an extra 10 points of energy!");
+            if(this.charmodel.energy < 11) {
+                alert("You don't have enough energy to remove the tree!");
+                return false;
+            }
+            if(check === true) {
+                this.removeItem(tile);
+                this.charmodel.energy -= 10;
+                alert("You removed the tree and you used an extra 10 points of energy!");
+                return true;
+            }
+            return false;
+        }
+        else if(item === 'Boulder'){
+            check = confirm("This tile contains a boulder. You cannot move into the " +
+                "tile without removing the boulder. You will use an extra 16 points of energy!");
+            if(this.charmodel.energy < 17) {
+                alert("You don't have enough energy to remove the boulder!");
+                return false;
+            }
+            if(check === true) {
+                this.removeItem(tile);
+                this.charmodel.energy -= 16;
+                alert("You removed the boulder and you used an extra 16 points of energy!");
+                return true;
+            }
+            return false;
+        }
+        else if(item === 'Blackberry Bushes'){
+            check = confirm("This tile contains blackberry bushes. You cannot move into the " +
+                "tile without removing the blackberry bushes. You will use an extra 4 points of energy!");
+            if(this.charmodel.energy < 5) {
+                alert("You don't have enough energy to remove the blackberry bushes!");
+                return false;
+            }
+            if(check === true) {
+                this.removeItem(tile);
+                this.charmodel.energy -= 4;
+                alert("You removed the blackberry bushes and you used an extra 4 points of energy!");
+                return true;
+            }
+            return false;
+        }
+        return true;
     }
 
     removeItem(tile){
