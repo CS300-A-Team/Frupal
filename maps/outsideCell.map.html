@@ -1,0 +1,36 @@
+<html><head>
+        <script src='../js/mapModel.js'></script>
+        <script src='../js/CharModel.js'></script>
+        <script src='../js/Tile.js'></script>
+        <script src='../js/FrupalModel.js'></script>
+<script>
+    function chkCorruptFile() {
+        return -1
+    }
+    function buildModel() {
+        var model = new FrupalModel;
+        model.mapmodel.name = 'Sample Frupal Game Map';
+        model.mapmodel.mapSize = 25;
+
+        model.charModel = new CharModel(12,12, 103, 1000);
+        model.charModel.inventory.push('Axe');
+        model.charModel.inventory.push('Axe');
+        model.charModel.inventory.push('Shears');
+        model.charModel.inventory.push('Pretty Rock');
+        model.mapmodel.addTile(12,12,1,1,'None');
+        model.mapmodel.addTile(13,12,0,1,'Tree');
+        model.mapmodel.addTile(14,12,0,2,'None');
+        model.mapmodel.addTile(12,13,0,1,'None');
+        model.mapmodel.addTile(12,14,0,0,'Royal Diamonds');
+        model.mapmodel.addTile(27,14,0,0,'None');
+        localStorage.clear();
+        localStorage.setItem('map', JSON.stringify(model));
+    }
+    var chkCorr = chkCorruptFile();
+    if(eval(chkCorr) == -1) {
+        alert('Your map file has corrupted contents');
+    } else if(eval(chkCorr) == 1) {
+        buildModel();
+    }
+</script></head>
+<body></body></html>
