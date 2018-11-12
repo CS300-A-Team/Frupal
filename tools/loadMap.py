@@ -66,7 +66,8 @@ def main():
 # Open file
 # Perhaps check if it exists
     mapFile = open(sys.argv[1])
-
+    outFile = open("../"+sys.argv[1]+".html",'w+')
+    sys.stdout = outFile
 # Iterate over file
     state = 0 # Starting state
 
