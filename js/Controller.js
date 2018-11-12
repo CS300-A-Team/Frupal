@@ -164,8 +164,19 @@ class Controller{
 
             }
         }
+        else if(item === 'Type 1 Treasure Chest'){
+            this.charmodel.whiffles += 100;
+            this.removeItem(currentTile);
+            this.messagemodel.message = 'You found a Type 1 Treasure Chest and gained 100 whiffles!';
+        }
+        else if(item === 'Type 2 Treasure Chest'){
+            this.charmodel.whiffles = 0;
+            this.removeItem(currentTile);
+            this.messagemodel.message = 'You found a Type 2 Treasure Chest and lost all of your whiffles!';
+        }
         // other kinds of items
     }
+
     removeItem(tile){
         this.mapmodel.modTile(tile.xLoc, tile.yLoc, tile.Visited, tile.Terrain, "None");
     }
