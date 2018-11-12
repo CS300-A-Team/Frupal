@@ -134,6 +134,8 @@ def main():
     print( "        buildModel();")
     print( "    }")	
     print( "</script></head>")
-    print( "<body></body></html>")
+    print( "<body>")
+    print( "<a href='../gameView.html'>Play Frupal!</a>" )
+    print( "</body></html>")
 
 main()
