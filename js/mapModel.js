@@ -5,7 +5,6 @@ class mapModel{
         this.mapHash = new Object();
         this.name = '';
         this.mapSize = 0;
-        this.sight = 1;
         // The royalDiamonds have strange requirements about them. The relevant user
         // story specifically describes them as having "coordinates", and not being
         // like another item. The map file Warren supplied doesn't include royal 
@@ -60,9 +59,9 @@ class mapModel{
         }
     }
 
-    setVisible(heroX, heroY){
+    setVisible(heroX, heroY, range){
         // Sight range is currently always 1, but binoculars could give us a bigger sight range
-        let sightRange = this.sight;
+        let sightRange = range;
         // Set every tile within sight range of the hero to Visited (visible).
         for (let i = heroX - sightRange; i <= heroX + sightRange; i ++) {
             for (let j = heroY - sightRange; j <= heroY + sightRange; j ++) {

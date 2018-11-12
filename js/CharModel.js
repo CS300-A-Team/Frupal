@@ -1,5 +1,5 @@
 class CharModel{
-    constructor(X,Y, Energy, Whiffles){
+    constructor(X,Y, Energy, Whiffles, visRange){
         this.x = X;
         this.y = Y;
         this.energy = Energy;
@@ -8,6 +8,7 @@ class CharModel{
         // hasFoundRoyalDiamonds is a simple flag for now. Later, we might replace it 
         // with a getter function that checks the inventory for Royal Diamonds
         this.hasFoundRoyalDiamonds = false;
+        this.visrange = visRange;
     }
     move( X, Y, EnergySpent ){
         this.x = X;

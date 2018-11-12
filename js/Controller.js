@@ -71,7 +71,7 @@ class Controller{
         if(tile.Terrain !== Water){  //I believe Water is the only impassable terrain as of now - Josh
             this.charmodel.move(tile.xLoc, tile.yLoc, 1); //Set the default to 1 energy spent
             //reveal tiles around player
-            this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y);
+            this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
             this.updateTileMessage(tile.Terrain);
         }
 
@@ -127,16 +127,34 @@ class Controller{
             return;
         }
         else if(item == 'PowerBar'){
-            var choice = confirm("Here is ar power bar, do you want to buy it? " +
+            var choice = confirm("Here is a power bar, do you want to buy it? " +
                                  "you have " + this.charmodel.whiffles + " whiffles " + " and " + this.charmodel.energy + " energy. " +
                                  "\nThe price of power bar is 1 whiffles and it will give you 20 energy points.");
             if (choice === true) {
                 if (this.charmodel.whiffles < 1)
-                    alert("Sorry! You don't have enough whiffles.")
+                    alert("Sorry! You don't have enough whiffles.");
                 else{
                     this.charmodel.whiffles  =  this.charmodel.whiffles - 1;
                     this.charmodel.energy = this.charmodel.energy + 20;
                     this.removeItem(currentTile);
+                    alert("You purchased it.");
+                    //this.charStatusView.redraw();
+                    //this.mapView.redraw();
+                }
+
+            }
+        }
+        else if(item == 'Binoculars'){
+            var choice = confirm("Here is a set of binoculars, do you want to buy it?" + "you have " + this.charmodel.whiffles
+                                 + " whiffles " + " and " + this.charmodel.energy + " energy. " +
+                                  "\nThe price of the binoculars is 100 whiffles and it will reveal more area.");
+            if(choice === true){
+                if(this.charmodel.whiffles < 100)
+                    alert("Sorry! You don't have enough whiffles.");
+                else{
+                    this.charmodel.whiffles = this.charmodel.whiffles - 100;
+                    this.removeItem(currentTile);
+                    this.charmodel.visrange = 2;
                     alert("You purchased it.");
                     //this.charStatusView.redraw();
                     //this.mapView.redraw();
