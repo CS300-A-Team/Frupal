@@ -74,8 +74,9 @@ class Controller{
             this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
             this.updateTileMessage(tile.Terrain);
         }
-
+        
         this.encounterItem();
+        this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
 
         // Handle the win and lose conditions
         if (this.charmodel.x == this.mapmodel.royalDiamondsX && 
