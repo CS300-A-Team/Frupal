@@ -42,7 +42,7 @@ Pretty Rock
 23,23,0,2,None
 24,24,0,2,None
 17,16,0,1,None
-18,16,0,1,None
+18,16,0,1,PowerBar
 19,16,0,1,None
 20,16,0,1,None
 21,16,0,1,None
@@ -53,7 +53,7 @@ Pretty Rock
 20,17,0,1,None
 21,17,0,1,None
 22,17,0,1,None
-23,21,0,4,None
+23,21,0,4,Binoculars
 24,21,0,4,None
 25,21,0,4,None
 26,21,0,4,None
