@@ -28,7 +28,7 @@ class Controller{
     // Actual Move call logic
     // Game logic goes here
 
-    updateTileMessage(terrain) {
+    updateTileMessage(terrain, EnergySpent = 0) {
         switch(terrain) {
             case Meadow:
                 this.messagemodel.message = "You are in the " + "Meadow";
@@ -52,6 +52,9 @@ class Controller{
                 this.messagemodel.message = "You are in the unknown tile";
                 break;
         }
+        if(EnergySpent > 1) {
+            this.messagemodel.message += ". You used extra energy to move here!";
+        }
     }
 
     move( Dir ){
@@ -68,11 +71,19 @@ class Controller{
         // Check the tile
         // If cannot move into tile then penalize
         // else move into tile
-        if(tile.Terrain !== Water){  //I believe Water is the only impassable terrain as of now - Josh
-            this.charmodel.move(tile.xLoc, tile.yLoc, 1); //Set the default to 1 energy spent
+        if(tile.Terrain === Water){
+            this.charmodel.energy--;
+            this.messagemodel.message = "YIKES! You cannot move into the Water! You used 1 energy point anyway.";
+        }
+        else{
+            var EnergySpent = 1;
+            if(tile.Terrain === Bog || tile.Terrain === Forest){
+                EnergySpent = 2;
+            }
+            this.charmodel.move(tile.xLoc, tile.yLoc, EnergySpent); //Set the default to 1 energy spent
             //reveal tiles around player
             this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
-            this.updateTileMessage(tile.Terrain);
+            this.updateTileMessage(tile.Terrain, EnergySpent);
         }
 
         this.encounterItem();
