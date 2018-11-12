@@ -4,6 +4,9 @@
         <script src='../js/Tile.js'></script>
         <script src='../js/FrupalModel.js'></script>
 <script>
+    function chkCorruptFile() {
+        return 1
+    }
     function buildModel() {
         var model = new FrupalModel;
         model.mapmodel.name = 'Sample Frupal Game Map';
@@ -23,6 +26,11 @@
         localStorage.clear();
         localStorage.setItem('map', JSON.stringify(model));
     }
-    buildModel();
+    var chkCorr = chkCorruptFile();
+    if(eval(chkCorr) == -1) {
+        alert('Your map file has corrupted contents');
+    } else if(eval(chkCorr) == 1) {
+        buildModel();
+    }
 </script></head>
 <body></body></html>
