@@ -74,7 +74,7 @@ class Controller{
             this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
             this.updateTileMessage(tile.Terrain);
         }
-        
+
         this.encounterItem();
         this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
 
@@ -156,6 +156,7 @@ class Controller{
                     this.charmodel.whiffles = this.charmodel.whiffles - 50;
                     this.removeItem(currentTile);
                     this.charmodel.visrange = 2;
+                    this.charmodel.inventory.push("Binoculars");
                     alert("You purchased it.");
                     //this.charStatusView.redraw();
                     //this.mapView.redraw();
