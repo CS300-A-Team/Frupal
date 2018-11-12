@@ -147,12 +147,12 @@ class Controller{
         else if(item == 'Binoculars'){
             var choice2 = confirm("Here is a set of binoculars, do you want to buy it?" + "you have " + this.charmodel.whiffles
                                  + " whiffles " + " and " + this.charmodel.energy + " energy. " +
-                                  "\nThe price of the binoculars is 100 whiffles and it will reveal more area.");
+                                  "\nThe price of the binoculars is 50 whiffles and it will reveal more area.");
             if(choice2 === true){
-                if(this.charmodel.whiffles < 100)
+                if(this.charmodel.whiffles < 50)
                     alert("Sorry! You don't have enough whiffles.");
                 else{
-                    this.charmodel.whiffles = this.charmodel.whiffles - 100;
+                    this.charmodel.whiffles = this.charmodel.whiffles - 50;
                     this.removeItem(currentTile);
                     this.charmodel.visrange = 2;
                     alert("You purchased it.");
