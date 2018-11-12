@@ -31,5 +31,6 @@ class FrupalModel{
         this.charModel.whiffles = obj.charModel.whiffles;
         this.charModel.inventory = obj.charModel.inventory;
         this.charModel.hasFoundRoyalDiamonds = obj.charModel.hasFoundRoyalDiamonds;
+        this.charModel.visrange = obj.charModel.visrange;
     }
 }

@@ -108,7 +108,7 @@ class Controller{
         this.mapView.moveChar(this.charmodel.x, this.charmodel.y);
         this.mapView.createMap();
 
-        this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y)
+        this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
         this.drawGame();
     }
 
@@ -145,10 +145,10 @@ class Controller{
             }
         }
         else if(item == 'Binoculars'){
-            var choice = confirm("Here is a set of binoculars, do you want to buy it?" + "you have " + this.charmodel.whiffles
+            var choice2 = confirm("Here is a set of binoculars, do you want to buy it?" + "you have " + this.charmodel.whiffles
                                  + " whiffles " + " and " + this.charmodel.energy + " energy. " +
                                   "\nThe price of the binoculars is 100 whiffles and it will reveal more area.");
-            if(choice === true){
+            if(choice2 === true){
                 if(this.charmodel.whiffles < 100)
                     alert("Sorry! You don't have enough whiffles.");
                 else{
