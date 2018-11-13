@@ -29,3 +29,15 @@ class CharModel{
         return false;   // We didn't find it in the inventory
     }
 }
+
+// itemTypeToPriceMap associates an inventory item type name with its price.
+// This is a weak location for the definition. Although it is close to the
+// inventory objects that use this map, it would be better to organize it
+// somewhere else like an Item.js file.
+let itemTypeToPriceMap = {
+    "Axe": 5,
+    "Pretty Rock": 1,
+    "Shears": 20,
+    "Binoculars": 50,
+    "Power Bar": 20
+};

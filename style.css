@@ -108,6 +108,37 @@ table {
   justify-content: space-evenly;
 }
 
+#inventory {
+    border-width: thin;
+    border-color: #e5e5e5;
+}
+
+.inv-title {
+    width: 100%;
+}
+
+.inv-header {
+    font-weight: bold;
+}
+
+.inv-name-column {
+    text-align: left;
+    float: left;
+    width: 50%;
+}
+
+.inv-value-column {
+    text-align: center;
+    float: center;
+    width: 25%;
+}
+
+.inv-count-column {
+    text-align: center;
+    float: right;
+    width: 25%
+}
+
 @media only screen and (max-width: 800px) {
     /* For mobile phones: */
     .controls, .messages {
