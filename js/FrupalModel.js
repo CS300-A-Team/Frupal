@@ -3,6 +3,7 @@ class FrupalModel{
 
         this.mapmodel = new mapModel;
         this.charModel = new CharModel;
+        this.messagemodel = new MessageModel;
         if( obj === undefined )
             return;
         // Handle Map hash specially
@@ -32,5 +33,7 @@ class FrupalModel{
         this.charModel.inventory = obj.charModel.inventory;
         this.charModel.hasFoundRoyalDiamonds = obj.charModel.hasFoundRoyalDiamonds;
         this.charModel.visrange = obj.charModel.visrange;
+
+        this.messagemodel.message = obj.messagemodel.message;
     }
 }

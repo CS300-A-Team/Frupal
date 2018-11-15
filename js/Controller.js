@@ -132,6 +132,7 @@ class Controller{
         let frupalModel = new FrupalModel();
         frupalModel.mapmodel = this.mapmodel;
         frupalModel.charModel = this.charmodel;
+        frupalModel.messagemodel = this.messagemodel;
         localStorage.setItem("map", JSON.stringify(frupalModel));
     }
 

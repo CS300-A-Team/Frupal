@@ -83,6 +83,7 @@ def main():
     print( "\
         <script src='../js/mapModel.js'></script>\n\
         <script src='../js/CharModel.js'></script>\n\
+        <script src='../js/MessageModel.js'></script>\n\
         <script src='../js/Tile.js'></script>\n\
         <script src='../js/FrupalModel.js'></script>")
     print( "<script>" )
@@ -115,6 +116,7 @@ def main():
 	
     print( "    function buildModel() {" )
     print( "        var model = new FrupalModel;" )
+    print( "        model.messagemodel.message = 'You find yourself on the island of Frupal.';" )
     mapFile.seek(0)
     state = 0
     for mapLine in mapFile:
