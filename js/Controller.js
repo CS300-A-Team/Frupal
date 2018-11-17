@@ -200,10 +200,10 @@ class Controller{
         else if(item === 'Tree') {
             check = confirm("This tile contains a tree. You cannot move into the " +
                 "tile without removing the tree. You will use an extra 10 points of energy!");
-            if(this.charmodel.energy < 11) {
-                alert("You don't have enough energy to remove the tree!");
-                return false;
-            }
+            // if(this.charmodel.energy < 11) {
+            //     alert("You don't have enough energy to remove the tree!");
+            //     return false;
+            // }
             if(check === true) {
                 this.removeItem(tile);
                 this.charmodel.energy -= 10;
@@ -215,10 +215,10 @@ class Controller{
         else if(item === 'Boulder'){
             check = confirm("This tile contains a boulder. You cannot move into the " +
                 "tile without removing the boulder. You will use an extra 16 points of energy!");
-            if(this.charmodel.energy < 17) {
-                alert("You don't have enough energy to remove the boulder!");
-                return false;
-            }
+            // if(this.charmodel.energy < 17) {
+            //     alert("You don't have enough energy to remove the boulder!");
+            //     return false;
+            // }
             if(check === true) {
                 this.removeItem(tile);
                 this.charmodel.energy -= 16;
@@ -230,10 +230,10 @@ class Controller{
         else if(item === 'Blackberry Bushes'){
             check = confirm("This tile contains blackberry bushes. You cannot move into the " +
                 "tile without removing the blackberry bushes. You will use an extra 4 points of energy!");
-            if(this.charmodel.energy < 5) {
-                alert("You don't have enough energy to remove the blackberry bushes!");
-                return false;
-            }
+            // if(this.charmodel.energy < 5) {
+            //     alert("You don't have enough energy to remove the blackberry bushes!");
+            //     return false;
+            // }
             if(check === true) {
                 this.removeItem(tile);
                 this.charmodel.energy -= 4;
