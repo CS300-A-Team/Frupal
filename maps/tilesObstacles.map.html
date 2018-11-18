@@ -6,7 +6,7 @@
         <script src='../js/FrupalModel.js'></script>
 <script>
     function chkCorruptFile() {
-        return -1
+        return 1
     }
     function buildModel() {
         var model = new FrupalModel;
@@ -23,8 +23,10 @@
         model.mapmodel.addTile(13,12,0,1,'Tree');
         model.mapmodel.addTile(14,12,0,2,'None');
         model.mapmodel.addTile(12,13,0,1,'None');
+        model.mapmodel.addTile(12,11,0,4,'None');
+        model.mapmodel.addTile(12,10,0,4,'None');
+        model.mapmodel.addTile(12,9,0,4,'Tree');
         model.mapmodel.addTile(12,14,0,0,'Royal Diamonds');
-        model.mapmodel.addTile(27,14,0,0,'None');
         localStorage.clear();
         localStorage.setItem('map', JSON.stringify(model));
     }

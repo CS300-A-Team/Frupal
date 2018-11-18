@@ -11,7 +11,7 @@
     function buildModel() {
         var model = new FrupalModel;
         model.messagemodel.message = 'You find yourself on the island of Frupal.';
-        model.mapmodel.name = 'Sample Frupal Game Map';
+        model.mapmodel.name = 'A map with a cell where x=26, one too low for the map';
         model.mapmodel.mapSize = 25;
 
         model.charModel = new CharModel(12,12, 103, 1000);
@@ -24,7 +24,7 @@
         model.mapmodel.addTile(14,12,0,2,'None');
         model.mapmodel.addTile(12,13,0,1,'None');
         model.mapmodel.addTile(12,14,0,0,'Royal Diamonds');
-        model.mapmodel.addTile(27,14,0,0,'None');
+        model.mapmodel.addTile(26,14,0,0,'None');
         localStorage.clear();
         localStorage.setItem('map', JSON.stringify(model));
     }

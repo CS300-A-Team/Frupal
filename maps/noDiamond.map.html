@@ -1,6 +1,7 @@
 <html><head>
         <script src='../js/mapModel.js'></script>
         <script src='../js/CharModel.js'></script>
+        <script src='../js/MessageModel.js'></script>
         <script src='../js/Tile.js'></script>
         <script src='../js/FrupalModel.js'></script>
 <script>
@@ -9,6 +10,7 @@
     }
     function buildModel() {
         var model = new FrupalModel;
+        model.messagemodel.message = 'You find yourself on the island of Frupal.';
         model.mapmodel.name = 'Sample Frupal Game Map';
         model.mapmodel.mapSize = 25;
 
