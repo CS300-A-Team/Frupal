@@ -39,5 +39,6 @@ let itemTypeToPriceMap = {
     "Pretty Rock": 1,
     "Shears": 20,
     "Binoculars": 50,
-    "Power Bar": 20
+    "Power Bar": 20,
+    "Royal Diamonds": "999,999+"
 };
