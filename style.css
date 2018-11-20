@@ -124,18 +124,18 @@ table {
 .inv-name-column {
     text-align: left;
     float: left;
-    width: 50%;
+    width: 45%;
 }
 
 .inv-value-column {
     text-align: center;
-    float: center;
-    width: 25%;
+    float: left;
+    width: 30%;
 }
 
 .inv-count-column {
     text-align: center;
-    float: right;
+    float: left;
     width: 25%
 }
 
