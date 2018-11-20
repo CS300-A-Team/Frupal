@@ -5,9 +5,6 @@ class CharModel{
         this.energy = Energy;
         this.whiffles = Whiffles;
         this.inventory = new Array();
-        // hasFoundRoyalDiamonds is a simple flag for now. Later, we might replace it 
-        // with a getter function that checks the inventory for Royal Diamonds
-        this.hasFoundRoyalDiamonds = false;
         this.visrange = 1;
     }
     move( X, Y, EnergySpent ){
@@ -21,5 +18,14 @@ class CharModel{
         }else{
             return false;
         }
+    }
+    hasItem( itemName ){
+        for ( let i = 0; i < this.inventory.length; i ++ ){
+            if ( this.inventory[i] === itemName ) {
+                return true;
+            }
+        }
+
+        return false;   // We didn't find it in the inventory
     }
 }

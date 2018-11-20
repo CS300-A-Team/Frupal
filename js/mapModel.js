@@ -5,14 +5,6 @@ class mapModel{
         this.mapHash = new Object();
         this.name = '';
         this.mapSize = 0;
-        // The royalDiamonds have strange requirements about them. The relevant user
-        // story specifically describes them as having "coordinates", and not being
-        // like another item. The map file Warren supplied doesn't include royal 
-        // diamonds, but the requirements also say that a map is corrupt if it doesn't
-        // include diamonds. Anyway, for now, I'm just placing them as a special, 
-        // item-like thing.
-        this.royalDiamondsX = -1;
-        this.royalDiamondsY = -1;
     }
 
     addTile(X, Y, Visit, Ter, Item){
@@ -20,12 +12,6 @@ class mapModel{
             this.mapHash[X + ',' + Y] = new Tile(X, Y, Visit, Ter, Item);
         }else{
             this.modTile(X, Y, Visit, Ter, Item);
-        }
-
-        if (Item === "Royal Diamonds"){
-            // This Tile contains the Diamonds, so record these special coordinates
-            this.royalDiamondsX = X;
-            this.royalDiamondsY = Y;
         }
     }
 

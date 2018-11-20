@@ -23,15 +23,12 @@ class FrupalModel{
         this.mapmodel.name = obj.mapmodel.name;
         this.mapmodel.mapSize = obj.mapmodel.mapSize;
         this.mapmodel._mapSize = obj.mapmodel.mapSize;
-        this.mapmodel.royalDiamondsX = obj.mapmodel.royalDiamondsX;
-        this.mapmodel.royalDiamondsY = obj.mapmodel.royalDiamondsY;
 
         this.charModel.x = obj.charModel.x;
         this.charModel.y = obj.charModel.y;
         this.charModel.energy = obj.charModel.energy;
         this.charModel.whiffles = obj.charModel.whiffles;
         this.charModel.inventory = obj.charModel.inventory;
-        this.charModel.hasFoundRoyalDiamonds = obj.charModel.hasFoundRoyalDiamonds;
         this.charModel.visrange = obj.charModel.visrange;
 
         this.messagemodel.message = obj.messagemodel.message;

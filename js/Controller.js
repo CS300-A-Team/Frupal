@@ -58,7 +58,7 @@ class Controller{
     }
 
     move( Dir ){
-    	if (this.charmodel.hasFoundRoyalDiamonds || this.charmodel.isDead()){
+    	if (this.charmodel.hasItem('Royal Diamonds') || this.charmodel.isDead()){
     		return;	// Don't let players move after winning/dying
     	}
     
@@ -92,16 +92,8 @@ class Controller{
         this.encounterItem();
         this.mapmodel.setVisible(this.charmodel.x, this.charmodel.y, this.charmodel.visrange);
 
-        // Handle the win and lose conditions
-        if (this.charmodel.x == this.mapmodel.royalDiamondsX && 
-        	this.charmodel.y == this.mapmodel.royalDiamondsY){
-        	// The win condition is finding the royal diamonds
-        	this.charmodel.hasFoundRoyalDiamonds = true;
-        	this.charmodel.whiffles = 999999999;	// "one zillion zillion whiffles"
-        	var winMessage = "You found the royal diamonds! Victory Royale!";
-        	this.messagemodel.message = winMessage;
-        	alert(winMessage);        	
-        } else if (this.charmodel.isDead()){
+        // Handle the loss condition
+        if (this.charmodel.isDead() && !this.charmodel.hasItem('Royal Diamonds')){
 	        // Check if character is now dead from moving
             var deadMessage = "Oh no! You died!!";
             this.messagemodel.message = deadMessage;
@@ -188,6 +180,15 @@ class Controller{
             this.charmodel.whiffles = 0;
             this.removeItem(currentTile);
             this.messagemodel.message = 'You found a Type 2 Treasure Chest and lost all of your whiffles!';
+        }
+        else if(item === 'Royal Diamonds'){
+            this.charmodel.inventory.push('Royal Diamonds');
+            this.removeItem(currentTile);
+            // Finding the royal diamonds is the win condition, so it does these special things
+            this.charmodel.whiffles = 999999999;	// "one zillion zillion whiffles"
+            var winMessage = "You found the royal diamonds! Victory Royale!";
+            this.messagemodel.message = winMessage;
+            alert(winMessage);
         }
         // other kinds of items
     }
