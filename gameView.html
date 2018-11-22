@@ -72,8 +72,23 @@
             } else if (event.keyCode === 37 || event.key === 'a' || event.key === 'A') {
                 west();
             }
+            playMusic();
         })
 
+    </script>
+    <script>
+        let musicPlaying = false;
+        function playMusic(){
+            if(musicPlaying)
+                return;
+            let audio = new Audio('music/legend_of_frupal.wav');
+            audio.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            audio.play();
+            musicPlaying = true;
+        }
     </script>
 </head>
 <body style="font-family:Verdana;color:#000000;">
