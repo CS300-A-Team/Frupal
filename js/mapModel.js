@@ -1,10 +1,11 @@
 class mapModel{
 
     //THe parameters of the constructor can (and likely will) be changed
-    constructor(){
+    constructor( godMode = false ){
         this.mapHash = new Object();
         this.name = '';
         this.mapSize = 0;
+        this.godMode = godMode;
     }
 
     addTile(X, Y, Visit, Ter, Item){

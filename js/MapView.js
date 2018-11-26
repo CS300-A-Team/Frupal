@@ -8,6 +8,7 @@ class MapView{
     createMap(){
         // Find the map element
         var mapdiv = document.getElementById('map');
+            mapdiv.innerHTML = '';
         // Create table
         var table = document.createElement('table');
             table.setAttribute("border",1);
@@ -19,7 +20,11 @@ class MapView{
             for( let x = 0; x < this.model.mapSize; x++ ){
                 var cell = document.createElement("td");
                     cell.id = x+','+y;
-                    cell.className = "mapTile";
+                    if( this.model.godMode ){
+                        cell.className = "mapTile meadow";
+                    }else {
+                        cell.className = "mapTile";
+                    }
                 row.appendChild(cell);
             }
         }
@@ -41,7 +46,7 @@ class MapView{
         for ( var key in tileHash ){
             // Set the corresponding tile to what it is
             var cell = document.getElementById(key);
-            if( tileHash[key].Visited ){
+            if( tileHash[key].Visited || this.model.godMode == true ){
                 cell.innerHTML = "";
                 // Get the Terrain
                 switch(tileHash[key].Terrain){

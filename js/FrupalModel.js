@@ -23,6 +23,7 @@ class FrupalModel{
         this.mapmodel.name = obj.mapmodel.name;
         this.mapmodel.mapSize = obj.mapmodel.mapSize;
         this.mapmodel._mapSize = obj.mapmodel.mapSize;
+        this.mapmodel.godMode = obj.mapmodel.godMode;
 
         this.charModel.x = obj.charModel.x;
         this.charModel.y = obj.charModel.y;

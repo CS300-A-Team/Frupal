@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<title> A-Team Frupal </title>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
+    <script>
+        var SIZE = 25
+        $(document).ready(function () {
+            var space = 1;
+            for (var r = 0; r < SIZE; r++) {
+                var col = "";
+                for (var c = 0; c < SIZE; c++) {
+                    col += "<td data-pos='" + space + "'></td>";
+                    space++;
+                }
+                $("#mapView").append("<tr>" + col + "</tr>");
+            }
+        });
+    </script>
+    <script src="js/Tile.js"></script>
+    <script src="js/MessageModel.js"></script>
+    <script src="js/MessageView.js"></script>
+    <script src="js/MapView.js"></script>
+    <script src="js/mapModel.js"></script>
+    <script src="js/CharModel.js"></script>
+    <script src="js/CharStatusView.js"></script>
+    <script src="js/Controller.js"></script>
+    <script src="js/FrupalModel.js"></script>
+    <script>
+
+        function loadMap() {
+            var modelJSON = localStorage.getItem("map");
+            return new FrupalModel(JSON.parse(modelJSON));
+        }
+
+        var model = loadMap();
+        model.mapmodel.godMode = true;
+
+        let controller = new Controller(model.charModel, model.mapmodel, model.messagemodel);
+
+
+        function north() {
+            controller.moveNorth();
+            playMusic();
+        }
+
+        function south() {
+            controller.moveSouth();
+            playMusic();
+        }
+
+        function east() {
+            controller.moveEast();
+            playMusic();
+        }
+
+        function west() {
+            controller.moveWest();
+            playMusic();
+        }
+
+        function toggleInventory(){
+            controller.toggleInventory();
+            playMusic();
+        }
+
+        // Install keyboard handler for arrow keys
+        $(window).keydown(function(event) {
+            if (event.keyCode === 38 || event.key === 'w' || event.key === ',') {	//"ArrowUp"
+                north();
+            } else if (event.keyCode === 39 || event.key === 'd' || event.key === 'e') {
+                east();
+            } else if (event.keyCode === 40 || event.key === 's' || event.key === 'o') {
+                south();
+            } else if (event.keyCode === 37 || event.key === 'a' || event.key === 'A') {
+                west();
+            }
+            playMusic();
+        })
+
+    </script>
+    <script>
+        let musicPlaying = false;
+        function playMusic(){
+            if(musicPlaying)
+                return;
+            let audio = new Audio('music/legend_of_frupal.wav');
+            audio.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+            audio.play();
+            musicPlaying = true;
+        }
+    </script>
+</head>
+<body style="font-family:Verdana;color:#000000;">
+
+<div style="background-color:#e5e5e5;padding:15px;text-align:center;">
+    <h1>The Island of Frupal</h1>
+</div>
+<div style="overflow:auto">
+
+    <div class="map">
+        <h2>"I'm the Map"</h2>
+        <div id="map"></div>
+        <!--
+        <table id="mapView"></table>
+        -->
+    </div>
+
+    <div class="status">
+        <h2>Status</h2>
+        <div>Energy: <span id="energy"> </span></div>
+        <div>Whiffles: <span id="whiffles"> </span></div>
+        <div>Current Location: <span id="location"> </span></div>
+        <input type="button" value="Show/hide Inventory" onClick="toggleInventory()"/>
+        <div id="inventory"></div>
+    </div>
+
+
+</div>
+<div style="display:flex;">
+
+    <div class="controls">
+        <div class="container">
+            <h2>Controls</h2>
+            <form name="buttons" class="flex">
+                <div class="form-row">
+                    <input type="button" value="NORTH" onClick="north()">
+                </div>
+                <div class="form-row">
+                    <input type="button" value="WEST" onClick="west()">
+                    <input type="button" value="EAST" onClick="east()">
+                </div>
+                <div class="form-row">
+                    <input type="button" value="SOUTH" onClick="south()">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="messages">
+        <h2>Messages</h2>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        controller.initGame();
+    </script>
+</div>
+</body>
+</html>
+
