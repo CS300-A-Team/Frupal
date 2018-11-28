@@ -168,8 +168,6 @@ class Controller{
                     this.charmodel.visrange = 2;
                     this.charmodel.inventory.push("Binoculars");
                     alert("You purchased it.");
-                    //this.charStatusView.redraw();
-                    //this.mapView.redraw();
                 }
 
             }
@@ -191,6 +189,7 @@ class Controller{
             this.charmodel.whiffles = 999999999;	// "one zillion zillion whiffles"
             var winMessage = "You found the royal diamonds! Victory Royale!";
             this.mapmodel.godMode = true;
+            this.mapView.createMap();
             this.messagemodel.message = winMessage;
             alert(winMessage);
         }
