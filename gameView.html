@@ -6,20 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link type="text/css" rel="stylesheet" href="style.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" charset="utf-8"></script>
-    <script>
-        var SIZE = 25
-        $(document).ready(function () {
-            var space = 1;
-            for (var r = 0; r < SIZE; r++) {
-                var col = "";
-                for (var c = 0; c < SIZE; c++) {
-                    col += "<td data-pos='" + space + "'></td>";
-                    space++;
-                }
-                $("#mapView").append("<tr>" + col + "</tr>");
-            }
-        });
-    </script>
     <script src="js/Tile.js"></script>
     <script src="js/MessageModel.js"></script>
     <script src="js/MessageView.js"></script>
