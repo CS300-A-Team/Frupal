@@ -193,6 +193,7 @@ class Controller{
             this.mapView.createMap();
             this.mapView.redraw();
             this.messagemodel.message = winMessage;
+            playMusic();
             alert(winMessage);
         }
         // other kinds of items
