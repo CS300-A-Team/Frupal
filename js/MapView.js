@@ -46,7 +46,7 @@ class MapView{
         for ( var key in tileHash ){
             // Set the corresponding tile to what it is
             var cell = document.getElementById(key);
-            if( tileHash[key].Visited || this.model.godMode == true ){
+            if( tileHash[key].Visited || this.model.godMode === true ){
                 cell.innerHTML = "";
                 // Get the Terrain
                 switch(tileHash[key].Terrain){
@@ -76,7 +76,7 @@ class MapView{
 
                 //display items on the map
                 if (tileHash[key].Item !== "None" && tileHash[key].Item !== "") {
-                    cell.innerHTML = cell.innerHTML + "|" + tileHash[key].Item;
+                    cell.innerHTML = "<span><img src='./img/" + tileHash[key].Item + ".png'\></span>"
                 }
             }
 

@@ -139,7 +139,7 @@ class Controller{
         if(item === 'None'){
             return;
         }
-        else if(item == 'PowerBar'){
+        else if(item === 'PowerBar'){
             var choice = confirm("Here is a power bar, do you want to buy it? " +
                                  "you have " + this.charmodel.whiffles + " whiffles " + " and " + this.charmodel.energy + " energy. " +
                                  "\nThe price of power bar is 1 whiffles and it will give you 20 energy points.");
@@ -151,13 +151,11 @@ class Controller{
                     this.charmodel.energy = this.charmodel.energy + 20;
                     this.removeItem(currentTile);
                     alert("You purchased it.");
-                    //this.charStatusView.redraw();
-                    //this.mapView.redraw();
                 }
 
             }
         }
-        else if(item == 'Binoculars'){
+        else if(item === 'Binoculars'){
             var choice2 = confirm("Here is a set of binoculars, do you want to buy it?" + "you have " + this.charmodel.whiffles
                                  + " whiffles " + " and " + this.charmodel.energy + " energy. " +
                                   "\nThe price of the binoculars is 50 whiffles and it will reveal more area.");
@@ -192,6 +190,7 @@ class Controller{
             // Finding the royal diamonds is the win condition, so it does these special things
             this.charmodel.whiffles = 999999999;	// "one zillion zillion whiffles"
             var winMessage = "You found the royal diamonds! Victory Royale!";
+            this.mapmodel.godMode = true;
             this.messagemodel.message = winMessage;
             alert(winMessage);
         }
@@ -207,10 +206,6 @@ class Controller{
         else if(item === 'Tree') {
             check = confirm("This tile contains a tree. You cannot move into the " +
                 "tile without removing the tree. You will use an extra 10 points of energy!");
-            // if(this.charmodel.energy < 11) {
-            //     alert("You don't have enough energy to remove the tree!");
-            //     return false;
-            // }
             if(check === true) {
                 this.removeItem(tile);
                 this.charmodel.energy -= 10;
@@ -222,10 +217,6 @@ class Controller{
         else if(item === 'Boulder'){
             check = confirm("This tile contains a boulder. You cannot move into the " +
                 "tile without removing the boulder. You will use an extra 16 points of energy!");
-            // if(this.charmodel.energy < 17) {
-            //     alert("You don't have enough energy to remove the boulder!");
-            //     return false;
-            // }
             if(check === true) {
                 this.removeItem(tile);
                 this.charmodel.energy -= 16;
@@ -237,10 +228,6 @@ class Controller{
         else if(item === 'Blackberry Bushes'){
             check = confirm("This tile contains blackberry bushes. You cannot move into the " +
                 "tile without removing the blackberry bushes. You will use an extra 4 points of energy!");
-            // if(this.charmodel.energy < 5) {
-            //     alert("You don't have enough energy to remove the blackberry bushes!");
-            //     return false;
-            // }
             if(check === true) {
                 this.removeItem(tile);
                 this.charmodel.energy -= 4;

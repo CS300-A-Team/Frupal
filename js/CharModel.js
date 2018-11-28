@@ -11,6 +11,7 @@ class CharModel{
         this.x = X;
         this.y = Y;
         this.energy = this.energy - EnergySpent;
+        if( this.energy < 0) this.energy = 0;
     }
     isDead( ){
         if( this.energy < 1 ){
