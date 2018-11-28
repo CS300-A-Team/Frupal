@@ -37,7 +37,7 @@ class MapView{
         if( this.charX === -1)
             return;
         var charCell = document.getElementById(this.charX+','+this.charY);
-        charCell.innerHTML = charCell.innerHTML + "|@";
+        charCell.innerHTML = charCell.innerHTML + "<span><img src='img/Character.png'/></span>";
     }
 
     redraw(){
@@ -76,7 +76,7 @@ class MapView{
 
                 //display items on the map
                 if (tileHash[key].Item !== "None" && tileHash[key].Item !== "") {
-                    cell.innerHTML = "<span><img src='./img/" + tileHash[key].Item + ".png'\></span>"
+                    cell.innerHTML = "<span><img src='./img/" + tileHash[key].Item + ".png'/></span>"
                 }
             }
 
