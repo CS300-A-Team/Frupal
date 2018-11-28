@@ -191,6 +191,7 @@ class Controller{
             this.mapmodel.godMode = true;
             this.mapView.model.godMode = true;
             this.mapView.createMap();
+            this.mapView.redraw();
             this.messagemodel.message = winMessage;
             alert(winMessage);
         }
